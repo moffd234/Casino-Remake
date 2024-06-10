@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class NumberGuessGameTest {
     private NumberGuessGame game;
     private final NumberGuessPlayer player = new NumberGuessPlayer();
@@ -32,5 +34,17 @@ public class NumberGuessGameTest {
     public void testIsWinnerFalse() {
         boolean outcome = game.isWinner(1, 5);
         Assert.assertFalse(outcome);
+    }
+
+    @Test
+    public void testAdd() {
+        NumberGuessPlayer expected = new NumberGuessPlayer();
+
+        game.add(expected);
+        ArrayList<NumberGuessPlayer> players = game.getPlayers();
+
+        NumberGuessPlayer actual = players.get(1);
+
+        Assert.assertEquals(expected, actual);
     }
 }

@@ -42,4 +42,7 @@ public class NumberGuessGame implements GameInterface {
 
     }
 
+    public ArrayList<NumberGuessPlayer> getPlayers() {
+        return players;
+    }
 }
