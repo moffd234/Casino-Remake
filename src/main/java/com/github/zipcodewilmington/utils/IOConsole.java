@@ -41,6 +41,17 @@ public class IOConsole {
         return input.nextLine();
     }
 
+    public Boolean getBooleanInput(String prompt, Object... args) {
+        String stringInput = getStringInput(prompt, args).toLowerCase();
+        if (stringInput.equals("true") || stringInput.equals("false")) {
+            return Boolean.parseBoolean(stringInput);
+        } else {
+            println("[ %s ] is an invalid user input!", stringInput);
+            println("Try inputting a true/false value!");
+            return getBooleanInput(prompt, args);
+        }
+    }
+
     public Double getDoubleInput(String prompt, Object... args) {
         String stringInput = getStringInput(prompt, args);
         try {

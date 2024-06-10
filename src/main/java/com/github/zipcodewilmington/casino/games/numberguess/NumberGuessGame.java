@@ -33,6 +33,7 @@ public class NumberGuessGame implements GameInterface {
         return console.getIntegerInput("Enter a number between 0 - 10 (inclusive)");
     }
 
+
     @Override
     public void add(PlayerInterface player) {
         players.add((NumberGuessPlayer) player);
@@ -45,7 +46,7 @@ public class NumberGuessGame implements GameInterface {
 
     @Override
     public void run() {
-
+        System.out.println(printWelcomeMessage());
     }
 
     @Override
