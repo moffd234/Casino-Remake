@@ -23,9 +23,6 @@ public class NumberGuessGame implements GameInterface {
         return random.nextInt(11); // Gets a num where 0 <= num < 11
     }
 
-    public boolean isWinner(int num, int randNum) {
-        return num == randNum;
-    }
 
     // TODO: Find out how to make unit test console input in V2
     public int getGuess(){

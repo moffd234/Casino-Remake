@@ -24,17 +24,6 @@ public class NumberGuessGameTest {
         Assert.assertTrue(0 <= num && num <= 10);
     }
 
-    @Test
-    public void testIsWinnerTrue() {
-        boolean outcome = game.isWinner(5, 5);
-        Assert.assertTrue(outcome);
-    }
-
-    @Test
-    public void testIsWinnerFalse() {
-        boolean outcome = game.isWinner(1, 5);
-        Assert.assertFalse(outcome);
-    }
 
     @Test
     public void testAdd() {
