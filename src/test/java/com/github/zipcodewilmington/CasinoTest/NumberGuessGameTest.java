@@ -1,16 +1,18 @@
 package com.github.zipcodewilmington.CasinoTest;
 
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
+import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class NumberGuessGameTest {
     private NumberGuessGame game;
+    private final NumberGuessPlayer player = new NumberGuessPlayer();
 
     @Before
     public void setUp(){
-        game = new NumberGuessGame();
+        game = new NumberGuessGame(player);
     }
 
     @Test

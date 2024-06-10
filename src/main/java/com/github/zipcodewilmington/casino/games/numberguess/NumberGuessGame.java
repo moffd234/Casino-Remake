@@ -11,8 +11,12 @@ import java.util.Random;
  * Created by leon on 7/21/2020.
  */
 public class NumberGuessGame implements GameInterface {
-    IOConsole console = new IOConsole();
-    ArrayList<NumberGuessPlayer> playerList = new ArrayList<>();
+    private final IOConsole console = new IOConsole();
+    private NumberGuessPlayer player;
+
+    public NumberGuessGame(NumberGuessPlayer player) {
+        this.player = player;
+    }
 
     public int getRandomNum() {
         Random random = new Random();
@@ -37,4 +41,5 @@ public class NumberGuessGame implements GameInterface {
     public void run() {
 
     }
+    
 }
