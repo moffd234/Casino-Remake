@@ -48,6 +48,11 @@ public class NumberGuessGame implements GameInterface {
 
     }
 
+    @Override
+    public String printWelcomeMessage() {
+        return null;
+    }
+
     public ArrayList<NumberGuessPlayer> getPlayers() {
         return players;
     }

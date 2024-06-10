@@ -20,4 +20,9 @@ public interface GameInterface extends Runnable {
      * specifies how the game will run
      */
     void run();
+
+    /**
+     * prints a welcome message unique to each game
+     */
+    String printWelcomeMessage();
 }
