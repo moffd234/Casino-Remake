@@ -47,4 +47,21 @@ public class NumberGuessGameTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testRemove() {
+        NumberGuessPlayer player1 = new NumberGuessPlayer();
+
+        game.add(player1);
+        ArrayList<NumberGuessPlayer> players = game.getPlayers();
+
+        Assert.assertTrue(players.contains(player1));
+
+        game.remove(player1);
+
+        players = game.getPlayers();
+        boolean actual = players.contains(player1);
+
+        Assert.assertFalse(actual);
+    }
 }

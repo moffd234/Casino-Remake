@@ -34,7 +34,7 @@ public class NumberGuessGame implements GameInterface {
 
     @Override
     public void remove(PlayerInterface player) {
-
+        players.remove(player);
     }
 
     @Override
