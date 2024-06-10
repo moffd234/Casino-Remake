@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.numberguess;
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.utils.IOConsole;
@@ -32,6 +33,19 @@ public class NumberGuessGame implements GameInterface {
 
     public Boolean getContinueInput(){
         return console.getBooleanInput("Would you like to continue?");
+    }
+
+    public String handleOutcome(int num1, int num2, int wager) {;
+        NumberGuessPlayer player1 = players.get(0);
+        CasinoAccount playerAccount = player1.getArcadeAccount();
+
+        if (num1 == num2) {
+            playerAccount.addWinnings(wager);
+            return "You won!";
+        }
+
+        playerAccount.subtractLosses(wager);
+        return "You lost! Correct number: " + num2;
     }
 
     @Override

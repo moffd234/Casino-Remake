@@ -68,4 +68,18 @@ public class NumberGuessGameTest {
         String actual = game.printWelcomeMessage();
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void testHandleOutcomeWin() {
+        String expected = "You won!";
+        String actual = game.handleOutcome(0, 0, 0);
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testHandleOutcomeLose() {
+        String expected = "You lost! Correct number: 2";
+        String actual = game.handleOutcome(0, 2, 0);
+        Assert.assertEquals(expected, actual);
+    }
 }

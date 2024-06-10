@@ -6,4 +6,11 @@ package com.github.zipcodewilmington.casino;
  * The `ArcadeAccount` is used to log into the system to select a `Game` to play.
  */
 public class CasinoAccount {
+    public double addWinnings(int wager) {
+        return 0;
+    }
+
+    public double subtractLosses(int wager) {
+        return 0;
+    }
 }

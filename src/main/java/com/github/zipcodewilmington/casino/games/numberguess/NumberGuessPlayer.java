@@ -9,7 +9,7 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 public class NumberGuessPlayer implements PlayerInterface {
     @Override
     public CasinoAccount getArcadeAccount() {
-        return null;
+        return new CasinoAccount();
     }
 
     @Override
