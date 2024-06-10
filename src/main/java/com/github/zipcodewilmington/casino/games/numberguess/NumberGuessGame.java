@@ -27,6 +27,12 @@ public class NumberGuessGame implements GameInterface {
         return num == randNum;
     }
 
+    // TODO: Find out how to make unit test console input in V2
+    public int getInput(){
+        NumberGuessPlayer player1 = players.get(0);
+        return console.getIntegerInput("Enter a number between 0 - 10 (inclusive)");
+    }
+
     @Override
     public void add(PlayerInterface player) {
         players.add((NumberGuessPlayer) player);
