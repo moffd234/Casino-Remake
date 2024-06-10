@@ -12,10 +12,10 @@ import java.util.Random;
  */
 public class NumberGuessGame implements GameInterface {
     private final IOConsole console = new IOConsole();
-    private NumberGuessPlayer player;
+    private ArrayList<NumberGuessPlayer> players = new ArrayList<>();
 
     public NumberGuessGame(NumberGuessPlayer player) {
-        this.player = player;
+        add(player);
     }
 
     public int getRandomNum() {
@@ -29,7 +29,7 @@ public class NumberGuessGame implements GameInterface {
 
     @Override
     public void add(PlayerInterface player) {
-
+        players.add((NumberGuessPlayer) player);
     }
 
     @Override
@@ -41,5 +41,5 @@ public class NumberGuessGame implements GameInterface {
     public void run() {
 
     }
-    
+
 }
