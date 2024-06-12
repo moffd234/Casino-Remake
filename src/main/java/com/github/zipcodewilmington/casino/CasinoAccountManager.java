@@ -1,5 +1,8 @@
 package com.github.zipcodewilmington.casino;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +16,29 @@ public class CasinoAccountManager {
 
     public CasinoAccountManager() {
 
+    }
+
+    public void readCSV(){
+        String csvFile = "./casinoAccounts.csv";
+        String line = "";
+        String csvSplitBy = ",";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            int nextId = Integer.parseInt(br.readLine());
+
+            while ((line = br.readLine()) != null) {
+                // split line with comma
+                String[] account = line.split(csvSplitBy);
+
+                String username = account[0];
+                String password = account[1];
+                double balance = Double.parseDouble(account[2]);
+
+                accountList.add(new CasinoAccount(username, password, balance));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

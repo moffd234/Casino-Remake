@@ -10,13 +10,20 @@ public class CasinoAccount {
     private String password;
     private double balance;
 
+
+    public CasinoAccount() {
+    }
+
     public CasinoAccount(String username, String password) {
         this.username = username;
         this.password = password;
         this.balance = 0;
     }
 
-    public CasinoAccount() {
+    public CasinoAccount(String username, String password, double balance) {
+        this.username = username;
+        this.password = password;
+        this.balance = balance;
     }
 
     public double addWinnings(int wager) {
