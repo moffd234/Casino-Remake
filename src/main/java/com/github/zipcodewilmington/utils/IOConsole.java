@@ -54,8 +54,7 @@ public class IOConsole {
 
     public String getYesNoInput(String prompt, Object... args) {
         String stringInput = getStringInput(prompt, args).toLowerCase();
-        if (stringInput.equals("yes") || stringInput.equals("y")
-                || stringInput.equals("no") || stringInput.equals("n")) {
+        if (stringInput.equals("yes") || stringInput.equals("no")) {
             return stringInput;
         }
         else{

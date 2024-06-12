@@ -5,7 +5,7 @@ import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.util.ArrayList;
 import java.util.Random;
-
+//TODO: TEST THE GAME AND WRITE A GetYesNoInput METHOD
 /**
  * Created by leon on 7/21/2020.
  */
@@ -25,25 +25,31 @@ public class NumberGuessGame implements GamblingGameInterface {
 
     // TODO: Find out how to make unit test for console input in V2
     public int getGuess(){
-        return console.getIntegerInput("Enter a number between 0 - 10 (inclusive)");
+        int input = console.getIntegerInput("Enter a number between 0 - 10 (inclusive)");
+
+        while(input < 0 || input > 10){
+            input = console.getIntegerInput("Enter a number between 0 - 10 (inclusive)");
+        }
+
+        return input;
     }
 
     // TODO: Find out how to make unit test for console input in V2
-    public Boolean getContinueInput(){
-        return console.getBooleanInput("Would you like to continue?");
+    public String getContinueInput(){
+        return console.getYesNoInput("Would you like to continue?");
     }
 
-    public String handleOutcome(int num1, int num2, int wager) {;
+    public String handleOutcome(int guess, int randNum, int wager) {;
         NumberGuessPlayer player1 = players.get(0);
         CasinoAccount playerAccount = player1.getArcadeAccount();
 
-        if (num1 == num2) {
+        if (guess == randNum) {
             playerAccount.addWinnings(wager);
-            return "You won!";
+            return "You won! The answer was " + randNum;
         }
 
         playerAccount.subtractLosses(wager);
-        return "You lost! Correct number: " + num2;
+        return "You lost! Correct number: " + randNum;
     }
 
     @Override
@@ -59,7 +65,7 @@ public class NumberGuessGame implements GamblingGameInterface {
     @Override
     public void run() {
         System.out.println(printWelcomeMessage());
-        
+
     }
 
     @Override
