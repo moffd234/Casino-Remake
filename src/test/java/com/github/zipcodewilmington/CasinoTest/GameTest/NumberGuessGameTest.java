@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.CasinoTest;
+package com.github.zipcodewilmington.CasinoTest.GameTest;
 
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
@@ -71,7 +71,7 @@ public class NumberGuessGameTest {
 
     @Test
     public void testHandleOutcomeWin() {
-        String expected = "You won!";
+        String expected = "You won! The answer was 0";
         String actual = game.handleOutcome(0, 0, 0);
         Assert.assertEquals(expected, actual);
     }
