@@ -1,8 +1,6 @@
 package com.github.zipcodewilmington.casino.games.numberguess;
 
-import com.github.zipcodewilmington.casino.CasinoAccount;
-import com.github.zipcodewilmington.casino.GameInterface;
-import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.*;
 import com.github.zipcodewilmington.utils.IOConsole;
 
 import java.util.ArrayList;
@@ -11,7 +9,7 @@ import java.util.Random;
 /**
  * Created by leon on 7/21/2020.
  */
-public class NumberGuessGame implements GameInterface {
+public class NumberGuessGame implements GamblingGameInterface {
     private final IOConsole console = new IOConsole();
     private ArrayList<NumberGuessPlayer> players = new ArrayList<>();
 
@@ -27,7 +25,6 @@ public class NumberGuessGame implements GameInterface {
 
     // TODO: Find out how to make unit test for console input in V2
     public int getGuess(){
-        NumberGuessPlayer player1 = players.get(0);
         return console.getIntegerInput("Enter a number between 0 - 10 (inclusive)");
     }
 
@@ -62,6 +59,7 @@ public class NumberGuessGame implements GameInterface {
     @Override
     public void run() {
         System.out.println(printWelcomeMessage());
+        
     }
 
     @Override
@@ -79,5 +77,10 @@ public class NumberGuessGame implements GameInterface {
 
     public ArrayList<NumberGuessPlayer> getPlayers() {
         return players;
+    }
+
+    @Override
+    public int getWagerAmount() {
+        return console.getIntegerInput("Enter a wager amount");
     }
 }

@@ -1,6 +1,6 @@
 package com.github.zipcodewilmington.casino;
 
-public interface gamblingGameInterface extends GameInterface{
+public interface GamblingGameInterface extends GameInterface{
 
     int getWagerAmount();
 }
