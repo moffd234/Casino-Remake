@@ -39,4 +39,12 @@ public class CasinoAccount {
     public double getBalance() {
         return balance;
     }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

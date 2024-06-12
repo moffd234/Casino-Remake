@@ -36,4 +36,24 @@ public class CasinoAccountTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void setPasswordTest() {
+        String expected = "Password123";
+
+        account.setPassword("Password123");
+        String actual = account.getPassword();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void setBalanceTest() {
+        Double expected = 25.0;
+
+        account.setBalance(25.0);
+        Double actual = account .getBalance();
+
+        Assert.assertEquals(expected, actual);
+    }
 }
