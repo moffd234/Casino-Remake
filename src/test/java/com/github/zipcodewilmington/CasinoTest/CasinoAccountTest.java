@@ -56,4 +56,22 @@ public class CasinoAccountTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void updateBalanceTestPositive(){
+        Double expected = 25.0;
+
+        Double actual = account.updateBalance(25.0);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void updateBalanceTestNegative(){
+        Double expected = -25.0;
+
+        Double actual = account.updateBalance(-25.0);
+
+        Assert.assertEquals(expected, actual);
+    }
 }

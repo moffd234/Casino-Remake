@@ -27,6 +27,11 @@ public class CasinoAccount {
         return 0;
     }
 
+    public double updateBalance(double amount) {
+        balance += amount;
+        return balance;
+    }
+
     public String getUsername() {
         return username;
     }
