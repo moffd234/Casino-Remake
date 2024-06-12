@@ -1,9 +1,14 @@
 package com.github.zipcodewilmington.casino;
 
+import com.github.zipcodewilmington.utils.CSVUtils;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by leon on 7/21/2020.
@@ -15,7 +20,7 @@ public class CasinoAccountManager {
     private ArrayList<CasinoAccount> accountList = new ArrayList<>();
 
     public CasinoAccountManager() {
-
+        readCSV();
     }
 
     public void readCSV(){
@@ -24,7 +29,6 @@ public class CasinoAccountManager {
         String csvSplitBy = ",";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            int nextId = Integer.parseInt(br.readLine());
 
             while ((line = br.readLine()) != null) {
                 // split line with comma
@@ -69,11 +73,23 @@ public class CasinoAccountManager {
      *
      * @param casinoAccount the arcadeAccount to be added to `this.getArcadeAccountList()`
      */
-    public void registerAccount(CasinoAccount casinoAccount) {
-        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-        String currentClassName = getClass().getName();
-        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
+    public void registerAccount(CasinoAccount casinoAccount) throws IOException {
+
+        addAccount(casinoAccount);
+
+        String csvFile = "./casinoAccounts.csv";
+        FileWriter writer = new FileWriter(csvFile);
+
+        for(CasinoAccount account : accountList) {
+            List<String> list = new ArrayList<>();
+            list.add(account.getUsername());
+            list.add(account.getPassword());
+            list.add(String.valueOf(account.getBalance()));
+
+            CSVUtils.writeLine(writer, list);
+        }
+        writer.flush();
+        writer.close();
     }
 
     public ArrayList<CasinoAccount> getAccountList() {

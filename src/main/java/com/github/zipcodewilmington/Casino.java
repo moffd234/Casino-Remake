@@ -11,6 +11,8 @@ import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.io.IOException;
+
 /**
  * Created by leon on 7/21/2020.
  */
@@ -30,10 +32,13 @@ public class Casino implements Runnable {
 
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
+
                     if (gameSelectionInput.equals("SLOTS")) {
                         play(new SlotsGame(), new SlotsPlayer());
+
                     } else if (gameSelectionInput.equals("NUMBERGUESS")) {
 //                        play(new NumberGuessGame(), new NumberGuessPlayer());
+
                     } else {
                         // TODO - implement better exception handling
                         String errorMessage = "[ %s ] is an invalid game selection";
@@ -42,6 +47,7 @@ public class Casino implements Runnable {
                 } else {
                     // TODO - implement better exception handling
                     String errorMessage = "No account found that name and password";
+                    System.out.println(errorMessage);
                 }
             } else if ("create-account".equals(arcadeDashBoardInput)) {
                 createNewAccount(casinoAccountManager);
@@ -54,7 +60,11 @@ public class Casino implements Runnable {
         String accountName = console.getStringInput("Enter your account name:");
         String accountPassword = console.getStringInput("Enter your account password:");
         CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
-        casinoAccountManager.registerAccount(newAccount);
+        try {
+            casinoAccountManager.registerAccount(newAccount);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private CasinoAccount getAccount(CasinoAccountManager casinoAccountManager){
