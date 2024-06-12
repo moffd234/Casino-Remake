@@ -66,6 +66,12 @@ public class NumberGuessGame implements GamblingGameInterface {
     public void run() {
         System.out.println(printWelcomeMessage());
 
+        while(getContinueInput().equals("yes")){
+            int wager = getWagerAmount();
+            int guess = getGuess();
+            int randomNum = getRandomNum();
+            System.out.println(handleOutcome(guess, randomNum, wager));
+        }
     }
 
     @Override
