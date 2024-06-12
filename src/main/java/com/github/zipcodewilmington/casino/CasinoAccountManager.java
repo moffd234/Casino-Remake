@@ -41,7 +41,7 @@ public class CasinoAccountManager {
                 accountList.add(new CasinoAccount(username, password, balance));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error reading CSV file. Accounts are not loaded");
         }
     }
 
@@ -51,10 +51,12 @@ public class CasinoAccountManager {
      * @return `ArcadeAccount` with specified `accountName` and `accountPassword`
      */
     public CasinoAccount getAccount(String accountName, String accountPassword) {
-        String currentMethodName = new Object(){}.getClass().getEnclosingMethod().getName();
-        String currentClassName = getClass().getName();
-        String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
-        throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
+        for(CasinoAccount account : accountList){
+            if(account.getUsername().equals(accountName) && account.getPassword().equals(accountPassword)) {
+                return account;
+            }
+        }
+        return null;
     }
 
     /**

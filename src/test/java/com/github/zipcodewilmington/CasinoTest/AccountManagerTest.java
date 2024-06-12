@@ -59,4 +59,21 @@ public class AccountManagerTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void getAccountTest() {
+        CasinoAccount expected = new CasinoAccount("username", "password");
+        accountManager.addAccount(expected);
+
+        CasinoAccount actual = accountManager.getAccount("username", "password");
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getAccountTestEmpty() {
+        CasinoAccount actual = accountManager.getAccount("username", "password");
+
+        Assert.assertNull(actual);
+    }
+
 }
