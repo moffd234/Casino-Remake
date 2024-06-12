@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.CasinoTest.GameTest;
+package com.github.zipcodewilmington.GameTest;
 
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;

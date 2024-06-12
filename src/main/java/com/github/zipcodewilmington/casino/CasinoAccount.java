@@ -26,4 +26,17 @@ public class CasinoAccount {
     public double subtractLosses(int wager) {
         return 0;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+
+    public double getBalance() {
+        return balance;
+    }
 }
