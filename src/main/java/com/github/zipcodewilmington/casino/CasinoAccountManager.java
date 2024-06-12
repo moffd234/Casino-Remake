@@ -11,6 +11,10 @@ public class CasinoAccountManager {
 
     private ArrayList<CasinoAccount> accountList = new ArrayList<>();
 
+    public CasinoAccountManager() {
+
+    }
+
     /**
      * @param accountName     name of account to be returned
      * @param accountPassword password of account to be returned
