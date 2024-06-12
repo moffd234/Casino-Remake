@@ -25,12 +25,13 @@ public class NumberGuessGame implements GameInterface {
     }
 
 
-    // TODO: Find out how to make unit test console input in V2
+    // TODO: Find out how to make unit test for console input in V2
     public int getGuess(){
         NumberGuessPlayer player1 = players.get(0);
         return console.getIntegerInput("Enter a number between 0 - 10 (inclusive)");
     }
 
+    // TODO: Find out how to make unit test for console input in V2
     public Boolean getContinueInput(){
         return console.getBooleanInput("Would you like to continue?");
     }
