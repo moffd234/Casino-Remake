@@ -23,11 +23,11 @@ public class Casino implements Runnable {
         CasinoAccountManager casinoAccountManager = new CasinoAccountManager();
         do {
             arcadeDashBoardInput = getArcadeDashboardInput();
+
             if ("select-game".equals(arcadeDashBoardInput)) {
-                String accountName = console.getStringInput("Enter your account name:");
-                String accountPassword = console.getStringInput("Enter your account password:");
-                CasinoAccount casinoAccount = casinoAccountManager.getAccount(accountName, accountPassword);
+                CasinoAccount casinoAccount = getAccount(casinoAccountManager);
                 boolean isValidLogin = casinoAccount != null;
+
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if (gameSelectionInput.equals("SLOTS")) {
@@ -41,8 +41,7 @@ public class Casino implements Runnable {
                     }
                 } else {
                     // TODO - implement better exception handling
-                    String errorMessage = "No account found with name of [ %s ] and password of [ %s ]";
-                    throw new RuntimeException(String.format(errorMessage, accountPassword, accountName));
+                    String errorMessage = "No account found that name and password";
                 }
             } else if ("create-account".equals(arcadeDashBoardInput)) {
                 createNewAccount(casinoAccountManager);
@@ -56,6 +55,12 @@ public class Casino implements Runnable {
         String accountPassword = console.getStringInput("Enter your account password:");
         CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
         casinoAccountManager.registerAccount(newAccount);
+    }
+
+    private CasinoAccount getAccount(CasinoAccountManager casinoAccountManager){
+        String accountName = console.getStringInput("Enter your account name:");
+        String accountPassword = console.getStringInput("Enter your account password:");
+        return casinoAccountManager.getAccount(accountName, accountPassword);
     }
 
     private String getArcadeDashboardInput() {
