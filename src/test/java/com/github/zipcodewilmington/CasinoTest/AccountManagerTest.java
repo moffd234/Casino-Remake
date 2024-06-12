@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class AccountManagerTest {
     CasinoAccountManager accountManager;
 
@@ -36,5 +38,25 @@ public class AccountManagerTest {
 
         Assert.assertEquals(expectedUsername, actualUsername);
         Assert.assertEquals(expectedPassword, actualPassword);
+    }
+
+    @Test
+    public void getAccountListTestEmpty() {
+        ArrayList<CasinoAccount> expected = new ArrayList<>();
+        ArrayList<CasinoAccount> actual = accountManager.getAccountList();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void addAccountTest() {
+        CasinoAccount account = accountManager.createAccount("username", "password");
+        ArrayList<CasinoAccount> expected = new ArrayList<>();
+        expected.add(account);
+
+        accountManager.addAccount(account);
+        ArrayList<CasinoAccount> actual = accountManager.getAccountList();
+
+        Assert.assertEquals(expected, actual);
     }
 }

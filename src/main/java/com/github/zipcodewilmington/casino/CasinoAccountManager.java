@@ -1,11 +1,16 @@
 package com.github.zipcodewilmington.casino;
 
+import java.util.ArrayList;
+
 /**
  * Created by leon on 7/21/2020.
  * `ArcadeAccountManager` stores, manages, and retrieves `ArcadeAccount` objects
  * it is advised that every instruction in this class is logged
  */
 public class CasinoAccountManager {
+
+    private ArrayList<CasinoAccount> accountList = new ArrayList<>();
+
     /**
      * @param accountName     name of account to be returned
      * @param accountPassword password of account to be returned
@@ -39,5 +44,13 @@ public class CasinoAccountManager {
         String currentClassName = getClass().getName();
         String errorMessage = "Method with name [ %s ], defined in class with name [ %s ] has  not yet been implemented";
         throw new RuntimeException(String.format(errorMessage, currentMethodName, currentClassName));
+    }
+
+    public ArrayList<CasinoAccount> getAccountList() {
+        return accountList;
+    }
+
+    public void addAccount(CasinoAccount casinoAccount) {
+        accountList.add(casinoAccount);
     }
 }
