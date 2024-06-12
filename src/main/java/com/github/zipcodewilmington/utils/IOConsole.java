@@ -52,6 +52,19 @@ public class IOConsole {
         }
     }
 
+    public String getYesNoInput(String prompt, Object... args) {
+        String stringInput = getStringInput(prompt, args).toLowerCase();
+        if (stringInput.equals("yes") || stringInput.equals("y")
+                || stringInput.equals("no") || stringInput.equals("n")) {
+            return stringInput;
+        }
+        else{
+            println("[ %s ] is an invalid user input!", stringInput);
+            println("Try inputting a yes/no value!");
+            return getYesNoInput(prompt, args);
+        }
+    }
+
     public Double getDoubleInput(String prompt, Object... args) {
         String stringInput = getStringInput(prompt, args);
         try {
