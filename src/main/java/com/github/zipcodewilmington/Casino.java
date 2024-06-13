@@ -45,11 +45,12 @@ public class Casino implements Runnable {
 
     private void handleManageSelect(CasinoAccount casinoAccount) {
         String input = promptManageOrSelect();
-        if(input.toLowerCase().equals("select-game")){
+        if(input.equalsIgnoreCase("select-game")){
             handleGameSelection(casinoAccount);
         }
-        else if(input.toLowerCase().equals("manage-account")) {
+        else if(input.equalsIgnoreCase("manage-account")) {
             // TODO - Handle account managing inputs
+            System.out.println();
         }
         else{
             handleManageSelect(casinoAccount);
@@ -110,6 +111,14 @@ public class Casino implements Runnable {
                 .append("You are logged in!")
                 .append("\nFrom here, you can select any of the following options:")
                 .append("\n\t[ manage-account ], [ select-game ]")
+                .toString());
+    }
+
+    private String promptAddFundsOrGoBack(CasinoAccount account){
+        return console.getStringInput(new StringBuilder()
+                .append("You have $" + account.getBalance())
+                .append("\nFrom here, you can select any of the following options:")
+                .append("\n\t[ add funds ], [ go back ]")
                 .toString());
     }
 
