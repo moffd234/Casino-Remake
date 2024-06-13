@@ -81,4 +81,26 @@ public class CasinoAccountTest {
         Double actual = account.addWinnings(25.0);
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void addWinningsTestNegative(){
+        try {
+            account.addWinnings(-25.0);
+            Assert.fail("Expected IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // Optionally, you can check the exception message or other properties
+            Assert.assertEquals("Wager must be a positive number", e.getMessage());
+        }
+    }
+
+    @Test
+    public void addWinningsTestZero(){
+        try {
+            account.addWinnings(0.0);
+            Assert.fail("Expected IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // Optionally, you can check the exception message or other properties
+            Assert.assertEquals("Wager must be a positive number", e.getMessage());
+        }
+    }
 }

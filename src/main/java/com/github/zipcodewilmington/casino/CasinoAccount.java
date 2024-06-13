@@ -27,6 +27,9 @@ public class CasinoAccount {
     }
 
     public double addWinnings(double wager) {
+        if(wager <= 0){
+            throw new IllegalArgumentException("Wager must be a positive number");
+        }
         balance += wager;
         return balance;
     }
