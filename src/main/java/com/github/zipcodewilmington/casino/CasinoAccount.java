@@ -26,7 +26,7 @@ public class CasinoAccount {
         this.balance = balance;
     }
 
-    public double addWinnings(int wager) {
+    public double addWinnings(double wager) {
         return 0;
     }
 

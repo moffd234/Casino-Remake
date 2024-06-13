@@ -49,12 +49,29 @@ public class Casino implements Runnable {
             handleGameSelection(casinoAccount);
         }
         else if(input.equalsIgnoreCase("manage-account")) {
-            // TODO - Handle account managing inputs
-            System.out.println();
+            handleAccountManagement(casinoAccount);
         }
         else{
             handleManageSelect(casinoAccount);
         }
+    }
+
+    private int handleAccountManagement(CasinoAccount casinoAccount) {
+        String input;
+        // TODO - Handle account managing inputs
+        input = promptAddFundsOrGoBack(casinoAccount);
+        if(input.equalsIgnoreCase("add-funds")){
+            double amountToAdd = console.getDoubleInput("Enter amount to add");
+            casinoAccount.addWinnings(amountToAdd); // TODO - Complete this function in CasinoAccount
+        }
+        else if(input.equalsIgnoreCase("go-back")){
+            return 0;
+        }
+        else{
+            System.out.println("Invalid input");
+            handleAccountManagement(casinoAccount);
+        }
+        return 0;
     }
 
     private void handleGameSelection(CasinoAccount account) {
@@ -118,7 +135,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("You have $" + account.getBalance())
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ add funds ], [ go back ]")
+                .append("\n\t[ add-funds ], [ go-back ]")
                 .toString());
     }
 
