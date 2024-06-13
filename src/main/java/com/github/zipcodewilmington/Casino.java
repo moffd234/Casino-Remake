@@ -26,12 +26,18 @@ public class Casino implements Runnable {
         do {
             arcadeDashBoardInput = getArcadeDashboardInput();
 
-            if ("select-game".equals(arcadeDashBoardInput)) {
+            if ("login".equals(arcadeDashBoardInput)) {
                 CasinoAccount casinoAccount = getAccount(casinoAccountManager);
                 boolean isValidLogin = casinoAccount != null;
 
                 if (isValidLogin) {
-                    handleGameSelection(casinoAccount);
+                    String input = promptManageOrSelect();
+                    if(input.toLowerCase().equals("select-game")){
+                        handleGameSelection(casinoAccount);
+                    }
+                    else if(input.toLowerCase().equals("manage-account")){
+                        // Handle account managing inputs
+                    }
                 } else {
                     // TODO - implement better exception handling
                     String errorMessage = "No account found that name and password";
@@ -54,7 +60,7 @@ public class Casino implements Runnable {
 
         } else {
             System.out.println("Invalid game selection");
-            handleGameSelection();
+            handleGameSelection(account);
         }
     }
 
@@ -80,7 +86,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Arcade Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ create-account ], [ select-game ]")
+                .append("\n\t[ create-account ], [ login ]")
                 .toString());
     }
 
@@ -92,10 +98,19 @@ public class Casino implements Runnable {
                 .toString());
     }
 
+    private String promptManageOrSelect(){
+        return console.getStringInput(new StringBuilder()
+                .append("You are logged in!")
+                .append("\nFrom here, you can select any of the following options:")
+                .append("\n\t[ manage-account ], [ select-game ]")
+                .toString());
+    }
+
     private void play(Object gameObject, Object playerObject) {
         GameInterface game = (GameInterface)gameObject;
         PlayerInterface player = (PlayerInterface)playerObject;
         game.add(player);
         game.run();
     }
+
 }
