@@ -33,17 +33,7 @@ public class Casino implements Runnable {
                 if (isValidLogin) {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
 
-                    if (gameSelectionInput.equals("SLOTS")) {
-                        play(new SlotsGame(), new SlotsPlayer());
-
-                    } else if (gameSelectionInput.equals("NUMBERGUESS")) {
-//                        play(new NumberGuessGame(), new NumberGuessPlayer());
-
-                    } else {
-                        // TODO - implement better exception handling
-                        String errorMessage = "[ %s ] is an invalid game selection";
-                        throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
-                    }
+                    handleGameSelection(gameSelectionInput);
                 } else {
                     // TODO - implement better exception handling
                     String errorMessage = "No account found that name and password";
@@ -53,6 +43,21 @@ public class Casino implements Runnable {
                 createNewAccount(casinoAccountManager);
             }
         } while (!"logout".equals(arcadeDashBoardInput));
+    }
+
+    private void handleGameSelection(String gameSelectionInput) {
+        if (gameSelectionInput.equals("SLOTS")) {
+            play(new SlotsGame(), new SlotsPlayer());
+
+        } else if (gameSelectionInput.equals("NUMBERGUESS")) {
+//                        play(new NumberGuessGame(), new NumberGuessPlayer());
+
+        } else {
+            // TODO - implement better exception handling
+
+            String errorMessage = "[ %s ] is an invalid game selection";
+            throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
+        }
     }
 
     private void createNewAccount(CasinoAccountManager casinoAccountManager) {
