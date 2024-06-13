@@ -27,7 +27,8 @@ public class CasinoAccount {
     }
 
     public double addWinnings(double wager) {
-        return 0;
+        balance += wager;
+        return balance;
     }
 
     public double subtractLosses(int wager) {

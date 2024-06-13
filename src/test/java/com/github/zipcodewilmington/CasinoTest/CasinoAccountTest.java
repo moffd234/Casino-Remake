@@ -74,4 +74,11 @@ public class CasinoAccountTest {
 
         Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void addWinningsTest(){
+        Double expected = 25.0;
+        Double actual = account.addWinnings(25.0);
+        Assert.assertEquals(expected, actual);
+    }
 }
