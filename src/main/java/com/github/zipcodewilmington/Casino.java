@@ -31,9 +31,7 @@ public class Casino implements Runnable {
                 boolean isValidLogin = casinoAccount != null;
 
                 if (isValidLogin) {
-                    String gameSelectionInput = getGameSelectionInput().toUpperCase();
-
-                    handleGameSelection(gameSelectionInput);
+                    handleGameSelection();
                 } else {
                     // TODO - implement better exception handling
                     String errorMessage = "No account found that name and password";
@@ -45,18 +43,18 @@ public class Casino implements Runnable {
         } while (!"logout".equals(arcadeDashBoardInput));
     }
 
-    private void handleGameSelection(String gameSelectionInput) {
+    private void handleGameSelection() {
+        String gameSelectionInput = getGameSelectionInput().toUpperCase();
         if (gameSelectionInput.equals("SLOTS")) {
             play(new SlotsGame(), new SlotsPlayer());
 
         } else if (gameSelectionInput.equals("NUMBERGUESS")) {
-//                        play(new NumberGuessGame(), new NumberGuessPlayer());
+            NumberGuessPlayer player = new NumberGuessPlayer();
+            play(new NumberGuessGame(player), player);
 
         } else {
-            // TODO - implement better exception handling
-
-            String errorMessage = "[ %s ] is an invalid game selection";
-            throw new RuntimeException(String.format(errorMessage, gameSelectionInput));
+            System.out.println("Invalid game selection");
+            handleGameSelection();
         }
     }
 
