@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.GameTest;
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import org.junit.Assert;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class NumberGuessGameTest {
     private NumberGuessGame game;
-    private final NumberGuessPlayer player = new NumberGuessPlayer();
+    private final NumberGuessPlayer player = new NumberGuessPlayer(new CasinoAccount());
 
     @Before
     public void setUp(){
@@ -27,7 +28,7 @@ public class NumberGuessGameTest {
 
     @Test
     public void testAdd() {
-        NumberGuessPlayer expected = new NumberGuessPlayer();
+        NumberGuessPlayer expected = new NumberGuessPlayer(new CasinoAccount());
 
         game.add(expected);
         ArrayList<NumberGuessPlayer> players = game.getPlayers();
@@ -39,7 +40,7 @@ public class NumberGuessGameTest {
 
     @Test
     public void testRemove() {
-        NumberGuessPlayer player1 = new NumberGuessPlayer();
+        NumberGuessPlayer player1 = new NumberGuessPlayer(new CasinoAccount());
 
         game.add(player1);
         ArrayList<NumberGuessPlayer> players = game.getPlayers();

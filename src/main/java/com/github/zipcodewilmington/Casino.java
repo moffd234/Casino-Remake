@@ -31,7 +31,7 @@ public class Casino implements Runnable {
                 boolean isValidLogin = casinoAccount != null;
 
                 if (isValidLogin) {
-                    handleGameSelection();
+                    handleGameSelection(casinoAccount);
                 } else {
                     // TODO - implement better exception handling
                     String errorMessage = "No account found that name and password";
@@ -43,13 +43,13 @@ public class Casino implements Runnable {
         } while (!"logout".equals(arcadeDashBoardInput));
     }
 
-    private void handleGameSelection() {
+    private void handleGameSelection(CasinoAccount account) {
         String gameSelectionInput = getGameSelectionInput().toUpperCase();
         if (gameSelectionInput.equals("SLOTS")) {
             play(new SlotsGame(), new SlotsPlayer());
 
         } else if (gameSelectionInput.equals("NUMBERGUESS")) {
-            NumberGuessPlayer player = new NumberGuessPlayer();
+            NumberGuessPlayer player = new NumberGuessPlayer(account);
             play(new NumberGuessGame(player), player);
 
         } else {
