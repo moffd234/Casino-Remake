@@ -27,20 +27,24 @@ public class Casino implements Runnable {
             arcadeDashBoardInput = getArcadeDashboardInput();
 
             if ("login".equals(arcadeDashBoardInput)) {
-                CasinoAccount casinoAccount = getAccount(casinoAccountManager);
-                boolean isValidLogin = casinoAccount != null;
-
-                if (isValidLogin) {
-                    handleManageSelect(casinoAccount);
-                } else {
-                    // TODO - implement better exception handling
-                    String errorMessage = "No account found that name and password";
-                    System.out.println(errorMessage);
-                }
+                handleLogin(casinoAccountManager);
             } else if ("create-account".equals(arcadeDashBoardInput)) {
                 createNewAccount(casinoAccountManager);
             }
         } while (!"logout".equals(arcadeDashBoardInput));
+    }
+
+    private void handleLogin(CasinoAccountManager casinoAccountManager) {
+        CasinoAccount casinoAccount = getAccount(casinoAccountManager);
+        boolean isValidLogin = casinoAccount != null;
+
+        if (isValidLogin) {
+            handleManageSelect(casinoAccount);
+        } else {
+            // TODO - implement better exception handling
+            String errorMessage = "No account found that name and password";
+            System.out.println(errorMessage);
+        }
     }
 
     private void handleManageSelect(CasinoAccount casinoAccount) {
