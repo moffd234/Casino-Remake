@@ -41,9 +41,8 @@ public class Casino implements Runnable {
         if (isValidLogin) {
             handleManageSelect(casinoAccount);
         } else {
-            // TODO - implement better exception handling
-            String errorMessage = "No account found that name and password";
-            System.out.println(errorMessage);
+            System.out.println("Invalid login");
+            handleLogin(casinoAccountManager);
         }
     }
 
