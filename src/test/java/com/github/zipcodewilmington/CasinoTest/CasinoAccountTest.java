@@ -103,4 +103,36 @@ public class CasinoAccountTest {
             Assert.assertEquals("Wager must be a positive number", e.getMessage());
         }
     }
+
+    @Test
+    public void subtractLossesTest(){
+        Double expected = 25.0;
+        account.setBalance(100);
+
+        Double actual = account.subtractLosses(75);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void subtractLossesTestNegative(){
+        try {
+            account.subtractLosses(-25.0);
+            Assert.fail("Expected IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // Optionally, you can check the exception message or other properties
+            Assert.assertEquals("Wager must be a positive number", e.getMessage());
+        }
+    }
+
+    @Test
+    public void subtractLossesTestZero(){
+        try {
+            account.addWinnings(0.0);
+            Assert.fail("Expected IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            // Optionally, you can check the exception message or other properties
+            Assert.assertEquals("Wager must be a positive number", e.getMessage());
+        }
+    }
 }

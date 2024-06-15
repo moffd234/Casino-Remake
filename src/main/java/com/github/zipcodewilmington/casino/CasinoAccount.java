@@ -34,8 +34,12 @@ public class CasinoAccount {
         return balance;
     }
 
-    public double subtractLosses(int wager) {
-        return 0;
+    public double subtractLosses(double wager) {
+        if(wager <= 0){
+            throw new IllegalArgumentException("Wager must be a positive number");
+        }
+        balance -= wager;
+        return balance;
     }
 
     public double updateBalance(double amount) {
