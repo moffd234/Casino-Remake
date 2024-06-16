@@ -68,7 +68,7 @@ public class CasinoAccountManager {
      */
     public CasinoAccount createAccount(String accountName, String accountPassword) {
         for(CasinoAccount account : accountList){
-            if(account.getUsername() == accountName){
+            if(account.getUsername().equals(accountName)){
                 return null;
             }
         }

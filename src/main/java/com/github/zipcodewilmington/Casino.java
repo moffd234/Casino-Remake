@@ -97,8 +97,10 @@ public class Casino implements Runnable {
         String accountName = console.getStringInput("Enter your account name:");
         String accountPassword = console.getStringInput("Enter your account password:");
         CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
-        if(newAccount == null){
-            createNewAccount(casinoAccountManager);
+        while(newAccount == null){
+            accountName = console.getStringInput("Enter your account name:");
+            accountPassword = console.getStringInput("Enter your account password:");
+            newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
         }
         try {
             casinoAccountManager.registerAccount(newAccount);
