@@ -67,6 +67,11 @@ public class CasinoAccountManager {
      * @return new instance of `ArcadeAccount` with specified `accountName` and `accountPassword`
      */
     public CasinoAccount createAccount(String accountName, String accountPassword) {
+        for(CasinoAccount account : accountList){
+            if(account.getUsername() == accountName){
+                return null;
+            }
+        }
         return new CasinoAccount(accountName, accountPassword);
     }
 

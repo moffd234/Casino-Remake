@@ -97,6 +97,9 @@ public class Casino implements Runnable {
         String accountName = console.getStringInput("Enter your account name:");
         String accountPassword = console.getStringInput("Enter your account password:");
         CasinoAccount newAccount = casinoAccountManager.createAccount(accountName, accountPassword);
+        if(newAccount == null){
+            createNewAccount(casinoAccountManager);
+        }
         try {
             casinoAccountManager.registerAccount(newAccount);
         } catch (IOException e) {
