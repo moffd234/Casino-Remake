@@ -67,4 +67,13 @@ public class CasinoAccount {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "CasinoAccount{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", balance=" + balance +
+                '}';
+    }
 }

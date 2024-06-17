@@ -66,6 +66,7 @@ public class Casino implements Runnable {
         if(input.equalsIgnoreCase("add-funds")){
             double amountToAdd = console.getDoubleInput("Enter amount to add");
             casinoAccount.updateBalance(amountToAdd);
+
         }
         else if(input.equalsIgnoreCase("go-back")){
             return;
