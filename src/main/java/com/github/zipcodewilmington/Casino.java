@@ -59,7 +59,7 @@ public class Casino implements Runnable {
         }
     }
 
-    private int handleAccountManagement(CasinoAccount casinoAccount) {
+    private void handleAccountManagement(CasinoAccount casinoAccount) {
         String input;
         // TODO - Handle account managing inputs
         input = promptAddFundsOrGoBack(casinoAccount);
@@ -68,13 +68,12 @@ public class Casino implements Runnable {
             casinoAccount.updateBalance(amountToAdd);
         }
         else if(input.equalsIgnoreCase("go-back")){
-            return 0;
+            return;
         }
         else{
             System.out.println("Invalid input");
             handleAccountManagement(casinoAccount);
         }
-        return 0;
     }
 
     private void handleGameSelection(CasinoAccount account) {

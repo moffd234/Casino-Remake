@@ -69,8 +69,7 @@ public class IOConsole {
     public Double getDoubleInput(String prompt, Object... args) {
         String stringInput = getStringInput(prompt, args);
         try {
-            Double doubleInput = Double.parseDouble(stringInput);
-            return doubleInput;
+            return Double.parseDouble(stringInput);
         } catch (NumberFormatException nfe) {
             println("[ %s ] is an invalid user input!", stringInput);
             println("Try inputting a numeric value!");
@@ -81,8 +80,7 @@ public class IOConsole {
     public Long getLongInput(String prompt, Object... args) {
         String stringInput = getStringInput(prompt, args);
         try {
-            Long longInput = Long.parseLong(stringInput);
-            return longInput;
+            return Long.parseLong(stringInput);
         } catch (NumberFormatException nfe) {
             println("[ %s ] is an invalid user input!", stringInput);
             println("Try inputting an integer value!");
