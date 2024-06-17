@@ -116,35 +116,27 @@ public class Casino implements Runnable {
     }
 
     private String getArcadeDashboardInput() {
-        return console.getStringInput(new StringBuilder()
-                .append("Welcome to the Arcade Dashboard!")
-                .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ create-account ], [ login ]")
-                .toString());
+        return console.getStringInput("Welcome to the Arcade Dashboard!" +
+                "\nFrom here, you can select any of the following options:" +
+                "\n\t[ create-account ], [ login ]");
     }
 
     private String getGameSelectionInput() {
-        return console.getStringInput(new StringBuilder()
-                .append("Welcome to the Game Selection Dashboard!")
-                .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ NUMBERGUESS ]")
-                .toString());
+        return console.getStringInput("Welcome to the Game Selection Dashboard!" +
+                "\nFrom here, you can select any of the following options:" +
+                "\n\t[ SLOTS ], [ NUMBERGUESS ]");
     }
 
     private String promptManageOrSelect(){
-        return console.getStringInput(new StringBuilder()
-                .append("You are logged in!")
-                .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ manage-account ], [ select-game ]")
-                .toString());
+        return console.getStringInput("You are logged in!" +
+                "\nFrom here, you can select any of the following options:" +
+                "\n\t[ manage-account ], [ select-game ]");
     }
 
     private String promptAddFundsOrGoBack(CasinoAccount account){
-        return console.getStringInput(new StringBuilder()
-                .append("You have $" + account.getBalance())
-                .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ add-funds ], [ go-back ]")
-                .toString());
+        return console.getStringInput("You have $" + account.getBalance() +
+                "\nFrom here, you can select any of the following options:" +
+                "\n\t[ add-funds ], [ go-back ]");
     }
 
     private void play(Object gameObject, Object playerObject) {

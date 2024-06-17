@@ -6,7 +6,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AccountManagerTest {
     CasinoAccountManager accountManager;
@@ -76,4 +81,28 @@ public class AccountManagerTest {
         Assert.assertNull(actual);
     }
 
+    @Test
+    public void writeToCSVTest(){
+        final String csvFile = "./casinoAccounts.csv";
+        accountManager.addAccount(new CasinoAccount("Jakob", "Jakob"));
+        accountManager.addAccount(new CasinoAccount("Wilbur", "Jakob"));
+
+        Assert.assertTrue(accountManager.writeAccountsToCSV());
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            List<String> lines = new ArrayList<>();
+            String line;
+            // Add all the lines to the line list
+            while ((line = br.readLine()) != null) {
+                lines.add(line);
+            }
+
+            // Verify that the correct lines are in the CSV file
+            Assert.assertTrue(lines.stream().anyMatch(l -> l.startsWith("Jakob,Jakob")));
+            Assert.assertTrue(lines.stream().anyMatch(l -> l.startsWith("Wilbur,Jakob")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

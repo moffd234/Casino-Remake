@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class CasinoAccountManager {
 
-    private ArrayList<CasinoAccount> accountList = new ArrayList<>();
+    private final ArrayList<CasinoAccount> accountList = new ArrayList<>();
 
     public CasinoAccountManager() {
         readCSV();
@@ -83,19 +83,7 @@ public class CasinoAccountManager {
 
         addAccount(casinoAccount);
 
-        String csvFile = "./casinoAccounts.csv";
-        FileWriter writer = new FileWriter(csvFile);
-
-        for(CasinoAccount account : accountList) {
-            List<String> list = new ArrayList<>();
-            list.add(account.getUsername());
-            list.add(account.getPassword());
-            list.add(String.valueOf(account.getBalance()));
-
-            CSVUtils.writeLine(writer, list);
-        }
-        writer.flush();
-        writer.close();
+        writeAccountsToCSV();
     }
 
     public ArrayList<CasinoAccount> getAccountList() {
@@ -104,5 +92,29 @@ public class CasinoAccountManager {
 
     public void addAccount(CasinoAccount casinoAccount) {
         accountList.add(casinoAccount);
+    }
+
+    public boolean writeAccountsToCSV(){
+        String csvFile = "./casinoAccounts.csv";
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(csvFile);
+
+            for(CasinoAccount account : accountList) {
+                List<String> list = new ArrayList<>();
+                list.add(account.getUsername());
+                list.add(account.getPassword());
+                list.add(String.valueOf(account.getBalance()));
+
+                CSVUtils.writeLine(writer, list);
+            }
+            writer.flush();
+            writer.close();
+
+        }
+        catch (IOException e) {
+            return false;
+        }
+        return true;
     }
 }
