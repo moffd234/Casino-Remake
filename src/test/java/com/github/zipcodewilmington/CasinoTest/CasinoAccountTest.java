@@ -135,4 +135,17 @@ public class CasinoAccountTest {
             Assert.assertEquals("Wager must be a positive number", e.getMessage());
         }
     }
+
+    @Test
+    public void toStringTest() {
+        String expected = "CasinoAccount{" +
+                "username='" + account.getUsername() + '\'' +
+                ", password='" + account.getPassword() + '\'' +
+                ", balance=" + account.getBalance() +
+                '}';
+
+        String actual = account.toString();
+
+        Assert.assertEquals(expected, actual);
+    }
 }
