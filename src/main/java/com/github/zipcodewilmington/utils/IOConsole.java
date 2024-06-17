@@ -38,7 +38,9 @@ public class IOConsole {
 
     public String getStringInput(String prompt, Object... args) {
         println(prompt, args);
-        return input.nextLine();
+        String userInput = input.nextLine();
+        checkForExit(userInput);  // Makes sure the user doesn't type exit to leave Casino
+        return userInput;
     }
 
     public Boolean getBooleanInput(String prompt, Object... args) {
@@ -90,5 +92,12 @@ public class IOConsole {
 
     public Integer getIntegerInput(String prompt, Object... args) {
         return getLongInput(prompt, args).intValue();
+    }
+
+    private void checkForExit(String input) {
+        if ("exit".equalsIgnoreCase(input)) {
+            println("Exiting the game...");
+            System.exit(0);
+        }
     }
 }
