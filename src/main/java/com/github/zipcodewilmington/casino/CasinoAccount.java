@@ -9,7 +9,7 @@ public class CasinoAccount {
     private String username;
     private String password;
     private double balance;
-
+    private CasinoAccountManager accountManager;
 
     public CasinoAccount() {
     }
@@ -31,6 +31,7 @@ public class CasinoAccount {
             throw new IllegalArgumentException("Wager must be a positive number");
         }
         balance += wager;
+        writeBalanceToCSV();
         return balance;
     }
 
@@ -39,11 +40,13 @@ public class CasinoAccount {
             throw new IllegalArgumentException("Wager must be a positive number");
         }
         balance -= wager;
+        writeBalanceToCSV();
         return balance;
     }
 
     public double updateBalance(double amount) {
         balance += amount;
+        writeBalanceToCSV();
         return balance;
     }
 
@@ -66,6 +69,16 @@ public class CasinoAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setAccountManager(CasinoAccountManager accountManager) {
+        this.accountManager = accountManager;
+    }
+
+    public void writeBalanceToCSV() {
+        if (accountManager != null) {
+            accountManager.writeAccountsToCSV();
+        }
     }
 
     @Override

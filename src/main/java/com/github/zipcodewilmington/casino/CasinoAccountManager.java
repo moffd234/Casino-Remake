@@ -37,7 +37,9 @@ public class CasinoAccountManager {
                 String password = account[1];
                 double balance = Double.parseDouble(account[2]);
 
-                accountList.add(new CasinoAccount(username, password, balance));
+                CasinoAccount casinoAccount = new CasinoAccount(username, password, balance);
+                casinoAccount.setAccountManager(this);
+                accountList.add(casinoAccount);
             }
         } catch (IOException e) {
             System.out.println("Error reading CSV file. Accounts are not loaded");

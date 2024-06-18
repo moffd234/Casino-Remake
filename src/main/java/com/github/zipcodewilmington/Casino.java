@@ -39,23 +39,25 @@ public class Casino implements Runnable {
         boolean isValidLogin = casinoAccount != null;
 
         if (isValidLogin) {
-            handleManageSelect(casinoAccount);
+            handleManageSelect(casinoAccount, casinoAccountManager);
         } else {
             System.out.println("Invalid login");
             handleLogin(casinoAccountManager);
         }
     }
 
-    private void handleManageSelect(CasinoAccount casinoAccount) {
+    private void handleManageSelect(CasinoAccount casinoAccount, CasinoAccountManager casinoAccountManager) {
         String input = promptManageOrSelect();
         if(input.equalsIgnoreCase("select-game")){
             handleGameSelection(casinoAccount);
         }
         else if(input.equalsIgnoreCase("manage-account")) {
+            System.out.println(casinoAccountManager.getAccountList());
             handleAccountManagement(casinoAccount);
+            System.out.println(casinoAccountManager.getAccountList());
         }
         else{
-            handleManageSelect(casinoAccount);
+            handleManageSelect(casinoAccount, casinoAccountManager);
         }
     }
 
