@@ -48,10 +48,10 @@ public class Casino implements Runnable {
 
     private void handleManageSelect(CasinoAccount casinoAccount, CasinoAccountManager casinoAccountManager) {
         String input = promptManageOrSelect();
-        if(input.equalsIgnoreCase("select-game")){
+        if(input.trim().equalsIgnoreCase("select-game")){
             handleGameSelection(casinoAccount);
         }
-        else if(input.equalsIgnoreCase("manage-account")) {
+        else if(input.trim().equalsIgnoreCase("manage-account")) {
             handleAccountManagement(casinoAccount);
         }
         else{
@@ -61,14 +61,16 @@ public class Casino implements Runnable {
 
     private void handleAccountManagement(CasinoAccount casinoAccount) {
         String input;
-        // TODO - Handle account managing inputs
-        input = promptAddFundsOrGoBack(casinoAccount);
-        if(input.equalsIgnoreCase("add-funds")){
+        input = promptAddFundsResetOrGoBack(casinoAccount);
+        if(input.trim().equalsIgnoreCase("add-funds")){
             double amountToAdd = console.getDoubleInput("Enter amount to add");
             casinoAccount.updateBalance(amountToAdd);
 
         }
-        else if(input.equalsIgnoreCase("go-back")){
+        else if(input.trim().equalsIgnoreCase("reset-password")){
+            resetPassword(casinoAccount);
+        }
+        else if(input.trim().equalsIgnoreCase("go-back")){
             return;
         }
         else{
@@ -134,10 +136,10 @@ public class Casino implements Runnable {
                 "\n\t[ manage-account ], [ select-game ]");
     }
 
-    private String promptAddFundsOrGoBack(CasinoAccount account){
+    private String promptAddFundsResetOrGoBack(CasinoAccount account){
         return console.getStringInput("You have $" + account.getBalance() +
                 "\nFrom here, you can select any of the following options:" +
-                "\n\t[ add-funds ], [ go-back ]");
+                "\n\t[ add-funds ], [reset-password], [ go-back ]");
     }
 
     private void play(Object gameObject, Object playerObject) {
@@ -145,6 +147,17 @@ public class Casino implements Runnable {
         PlayerInterface player = (PlayerInterface)playerObject;
         game.add(player);
         game.run();
+    }
+
+    private void resetPassword(CasinoAccount casinoAccount){
+        String input = console.getStringInput("Enter new password");
+        String confirmInput = console.getStringInput("Re-enter password");
+        while(!input.equals(confirmInput)){
+            System.out.println("Passwords do not match");
+            input = console.getStringInput("Enter new password");
+            confirmInput = console.getStringInput("Re-enter password");
+        }
+        casinoAccount.setPassword(input);
     }
 
 }

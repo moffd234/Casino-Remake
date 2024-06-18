@@ -33,9 +33,9 @@ public class CasinoAccount {
             throw new IllegalArgumentException("Wager must be a positive number");
         }
         FileLogger.logInfo("Adding winnings: " + wager + " to balance: " + balance + ". New balance: "
-                + (balance + wager) + " for account: " + this.username);
+                + (balance + wager) + " for account: " + username);
         balance += wager;
-        writeBalanceToCSV();
+        writeToCSV();
         return balance;
     }
 
@@ -44,18 +44,18 @@ public class CasinoAccount {
             throw new IllegalArgumentException("Wager must be a positive number");
         }
         FileLogger.logInfo("Subtracting loses: " + wager + " from balance: " + balance + ". New balance: "
-                + (balance - wager) + " for account: " + this.username);
+                + (balance - wager) + " for account: " + username);
         balance -= wager;
-        writeBalanceToCSV();
+        writeToCSV();
         return balance;
     }
 
     public double updateBalance(double amount) {
-        FileLogger.logInfo("Updating balance from" + balance + " to "
-                + (balance + amount) + " for account: " + this.username);
+        FileLogger.logInfo("Adding: " + amount + "to balance " + balance + "new balance: "
+                + (balance + amount) + " for account: " + username);
         balance += amount;
 
-        writeBalanceToCSV();
+        writeToCSV();
         return balance;
     }
 
@@ -78,17 +78,19 @@ public class CasinoAccount {
 
     public void setPassword(String password) {
         this.password = password;
+        FileLogger.logInfo("Password has been reset for account: " + username);
+        writeToCSV();
     }
 
     public void setAccountManager(CasinoAccountManager accountManager) {
         this.accountManager = accountManager;
     }
 
-    public void writeBalanceToCSV() {
+    public void writeToCSV() {
         if (accountManager != null) {
-            FileLogger.logInfo("Writing new balance for account: " + this.username + " to CSV");
+            FileLogger.logInfo("Writing new account info for account: " + username + " to CSV");
             accountManager.writeAccountsToCSV();
-            FileLogger.logInfo("Successfully wrote balance update");
+            FileLogger.logInfo("Successfully wrote update");
         }
     }
 
