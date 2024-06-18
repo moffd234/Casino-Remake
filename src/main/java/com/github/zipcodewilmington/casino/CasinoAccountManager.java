@@ -119,6 +119,7 @@ public class CasinoAccountManager {
         }
         catch (IOException e) {
             FileLogger.logSevere("Issue writing accounts to CSV\n" + e);
+            FileLogger.logInfo("Accounts in account list: " + this);
             return false;
         }
         FileLogger.logInfo("Wrote " + accountList.size() + " accounts to casinoAccounts.csv");
