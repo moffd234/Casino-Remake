@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.casino;
 
 import com.github.zipcodewilmington.utils.CSVUtils;
+import com.github.zipcodewilmington.utils.FileLogger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,11 +21,12 @@ public class CasinoAccountManager {
 
     public CasinoAccountManager() {
         readCSV();
+        FileLogger.logInfo("Loaded " + accountList.size() + " accounts from casinoAccounts.csv");
     }
 
     public void readCSV(){
         String csvFile = "./casinoAccounts.csv";
-        String line = "";
+        String line;
         String csvSplitBy = ",";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -43,6 +45,7 @@ public class CasinoAccountManager {
             }
         } catch (IOException e) {
             System.out.println("Error reading CSV file. Accounts are not loaded");
+            FileLogger.logWarning("Error reading CSV file.\n" + e);
         }
     }
 
@@ -98,7 +101,7 @@ public class CasinoAccountManager {
 
     public boolean writeAccountsToCSV(){
         String csvFile = "./casinoAccounts.csv";
-        FileWriter writer = null;
+        FileWriter writer;
         try {
             writer = new FileWriter(csvFile);
 
@@ -115,8 +118,11 @@ public class CasinoAccountManager {
 
         }
         catch (IOException e) {
+            FileLogger.logSevere("Issue writing accounts to CSV\n" + e);
             return false;
         }
+        FileLogger.logInfo("Wrote " + accountList.size() + " accounts to casinoAccounts.csv");
+
         return true;
     }
 }

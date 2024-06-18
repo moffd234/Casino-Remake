@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.casino;
+package com.github.zipcodewilmington.utils;
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
