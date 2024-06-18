@@ -563,3 +563,4 @@ MigrationBackup/
 
 ./casinoAccounts.csv
 ./csvTest.csv
+./casinoLogger.log

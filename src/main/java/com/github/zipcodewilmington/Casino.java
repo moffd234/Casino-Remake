@@ -52,9 +52,7 @@ public class Casino implements Runnable {
             handleGameSelection(casinoAccount);
         }
         else if(input.equalsIgnoreCase("manage-account")) {
-            System.out.println(casinoAccountManager.getAccountList());
             handleAccountManagement(casinoAccount);
-            System.out.println(casinoAccountManager.getAccountList());
         }
         else{
             handleManageSelect(casinoAccount, casinoAccountManager);
