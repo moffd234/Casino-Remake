@@ -105,4 +105,15 @@ public class AccountManagerTest {
         }
 
     }
+
+    @Test
+    public void toStringTest(){
+        String expected = "CasinoAccountManager{" +
+                "accountList=" + accountManager.getAccountList() +
+                "}";
+
+        String actual = accountManager.toString();
+
+        Assert.assertEquals(expected, actual);
+    }
 }

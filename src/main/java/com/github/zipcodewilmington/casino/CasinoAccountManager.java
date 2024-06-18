@@ -125,4 +125,11 @@ public class CasinoAccountManager {
 
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "CasinoAccountManager{" +
+                "accountList=" + accountList +
+                '}';
+    }
 }
