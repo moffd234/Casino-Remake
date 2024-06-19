@@ -15,7 +15,7 @@ public class NumberGuessPlayer implements PlayerInterface {
 
     @Override
     public CasinoAccount getArcadeAccount() {
-        return new CasinoAccount();
+        return arcadeAccount;
     }
 
     @Override
