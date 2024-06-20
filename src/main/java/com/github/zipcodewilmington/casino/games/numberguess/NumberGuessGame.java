@@ -42,7 +42,7 @@ public class NumberGuessGame implements GamblingGameInterface {
     public String handleOutcome(int guess, int randNum, int wager) {;
         NumberGuessPlayer player1 = players.get(0);
         CasinoAccount playerAccount = player1.getArcadeAccount();
-        System.out.println(playerAccount);
+
         if (guess == randNum) {
             playerAccount.addWinnings(wager);
             return "You won! The answer was " + randNum;

@@ -39,14 +39,14 @@ public class Casino implements Runnable {
         boolean isValidLogin = casinoAccount != null;
 
         if (isValidLogin) {
-            handleManageSelect(casinoAccount, casinoAccountManager);
+            handleManageSelect(casinoAccount);
         } else {
             System.out.println("Invalid login");
             handleLogin(casinoAccountManager);
         }
     }
 
-    private void handleManageSelect(CasinoAccount casinoAccount, CasinoAccountManager casinoAccountManager) {
+    private void handleManageSelect(CasinoAccount casinoAccount) {
         String input = promptManageOrSelect();
         if(input.trim().equalsIgnoreCase("select-game")){
             handleGameSelection(casinoAccount);
@@ -55,7 +55,7 @@ public class Casino implements Runnable {
             handleAccountManagement(casinoAccount);
         }
         else{
-            handleManageSelect(casinoAccount, casinoAccountManager);
+            handleManageSelect(casinoAccount);
         }
     }
 
