@@ -86,7 +86,7 @@ public class Casino implements Runnable {
 
         } else if (gameSelectionInput.equals("NUMBERGUESS")) {
             NumberGuessPlayer player = new NumberGuessPlayer(account);
-            play(new NumberGuessGame(player), player);
+            play(new NumberGuessGame(), player);
 
         } else {
             System.out.println("Invalid game selection");

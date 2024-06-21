@@ -32,7 +32,7 @@ public class SlotsGame implements GamblingGameInterface {
     @Override
     public String printWelcomeMessage() {
         return "";
-    }]
+    }
 
 
 }

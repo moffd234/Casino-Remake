@@ -11,11 +11,7 @@ import java.util.Random;
  */
 public class NumberGuessGame implements GamblingGameInterface {
     private final IOConsole console = new IOConsole();
-    private ArrayList<NumberGuessPlayer> players = new ArrayList<>();
-
-    public NumberGuessGame(NumberGuessPlayer player) {
-        add(player);
-    }
+    private NumberGuessPlayer player;
 
     public int getRandomNum() {
         Random random = new Random();
@@ -39,9 +35,8 @@ public class NumberGuessGame implements GamblingGameInterface {
         return console.getYesNoInput("Would you like to continue?");
     }
 
-    public String handleOutcome(int guess, int randNum, int wager) {;
-        NumberGuessPlayer player1 = players.get(0);
-        CasinoAccount playerAccount = player1.getArcadeAccount();
+    public String handleOutcome(int guess, int randNum, int wager) {
+        CasinoAccount playerAccount = player.getArcadeAccount();
 
         if (guess == randNum) {
             playerAccount.addWinnings(wager);
@@ -54,12 +49,14 @@ public class NumberGuessGame implements GamblingGameInterface {
 
     @Override
     public void add(PlayerInterface player) {
-        players.add((NumberGuessPlayer) player);
+        this.player = (NumberGuessPlayer) player;
     }
 
     @Override
     public void remove(PlayerInterface player) {
-        players.remove(player);
+        if(this.player.equals(player)) {
+            this.player = null;
+        }
     }
 
     @Override
@@ -87,8 +84,8 @@ public class NumberGuessGame implements GamblingGameInterface {
                 "|__/     \\__/|________/|________/ \\______/  \\______/ |__/     |__/|________/         |__/   \\______/       |__/  \\__/ \\______/ |__/     |__/       \\______/  \\______/ |________/ \\______/  \\______/ |________/|__/  |__/";
     }
 
-    public ArrayList<NumberGuessPlayer> getPlayers() {
-        return players;
+    public NumberGuessPlayer getPlayer() {
+        return player;
     }
 
     @Override
