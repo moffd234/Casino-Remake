@@ -37,4 +37,7 @@ public class SlotsGame implements GamblingGameInterface {
     }
 
 
+    public SlotsPlayer getPlayer() {
+        return player;
+    }
 }
