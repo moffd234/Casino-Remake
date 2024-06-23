@@ -7,7 +7,7 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
  * Created by leon on 7/21/2020.
  */
 public class SlotsGame implements GamblingGameInterface {
-    SlotsPlayer currentPlayer;
+    SlotsPlayer player;
 
     @Override
     public int getWagerAmount() {
@@ -16,12 +16,14 @@ public class SlotsGame implements GamblingGameInterface {
 
     @Override
     public void add(PlayerInterface player) {
-
+        this.player = (SlotsPlayer) player;
     }
 
     @Override
     public void remove(PlayerInterface player) {
-
+        if(player == this.player) {
+            this.player = null;
+        }
     }
 
     @Override
