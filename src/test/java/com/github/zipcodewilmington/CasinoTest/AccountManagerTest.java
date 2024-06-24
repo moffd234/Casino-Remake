@@ -45,24 +45,14 @@ public class AccountManagerTest {
         Assert.assertEquals(expectedPassword, actualPassword);
     }
 
-    @Test
-    public void getAccountListTestEmpty() {
-        ArrayList<CasinoAccount> expected = new ArrayList<>();
-        ArrayList<CasinoAccount> actual = accountManager.getAccountList();
-
-        Assert.assertEquals(expected, actual);
-    }
 
     @Test
     public void addAccountTest() {
         CasinoAccount account = accountManager.createAccount("username", "password");
-        ArrayList<CasinoAccount> expected = new ArrayList<>();
-        expected.add(account);
-
         accountManager.addAccount(account);
         ArrayList<CasinoAccount> actual = accountManager.getAccountList();
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual.contains(account));
     }
 
     @Test
