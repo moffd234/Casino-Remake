@@ -1,6 +1,5 @@
 package com.github.zipcodewilmington.GameTest;
 
-import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import org.junit.Assert;
@@ -104,5 +103,51 @@ public class SlotsGameTest {
         String[] symbols = {"7", "Cherry", "Bar"};
         boolean actual = game.isWinner(symbols);
         Assert.assertFalse(actual);
+    }
+
+    @Test
+    public void testGetWinnerType7(){
+        double expected = 10;
+        String sym = "7";
+
+        double actual = game.getWinnerType(sym);
+
+        Assert.assertEquals(expected, actual, .0001);
+    }
+
+    @Test
+    public void testGetWinnerTypeBell(){
+        double expected = 5;
+        String sym = "Bell";
+
+        double actual = game.getWinnerType(sym);
+
+        Assert.assertEquals(expected, actual, .0001);
+    }
+
+    @Test
+    public void testGetWinnerTypeBar(){
+        double expected = 2;
+        String sym = "Bar";
+
+        double actual = game.getWinnerType(sym);
+
+        Assert.assertEquals(expected, actual, .0001);
+    }
+
+    @Test
+    public void testGetWinnerTypeCherry(){
+        double expected = 1.5;
+        String sym = "Cherry";
+
+        double actual = game.getWinnerType(sym);
+
+        Assert.assertEquals(expected, actual, .0001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetWinnerType_InvalidSymbol() {
+        SlotsGame game = new SlotsGame();
+        game.getWinnerType("InvalidSymbol");
     }
 }

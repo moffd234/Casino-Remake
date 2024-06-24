@@ -30,17 +30,6 @@ public class SlotsGame implements GamblingGameInterface {
         }
     }
 
-    public String[] getSymbols(){
-        List<String> givenList = Arrays.asList("7", "Bell", "Bar", "Cherry", "Lemon", "Orange");
-        Random rand = new Random();
-
-        String[] output = new String[3];
-        for(int i = 0; i < 3; i++){
-            output[i] = givenList.get(rand.nextInt(givenList.size()));;
-        }
-        return output;
-    }
-
     @Override
     public void run() {
     }
@@ -70,8 +59,33 @@ public class SlotsGame implements GamblingGameInterface {
                 "   - Any other combination: No Win\n";
     }
 
-    public Boolean isWinner(String[] symbols){
+    public String[] getSymbols(){
+        List<String> givenList = Arrays.asList("7", "Bell", "Bar", "Cherry", "Lemon", "Orange");
+        Random rand = new Random();
+
+        String[] output = new String[3];
+        for(int i = 0; i < 3; i++){
+            output[i] = givenList.get(rand.nextInt(givenList.size()));;
+        }
+        return output;
+    }
+    public boolean isWinner(String[] symbols){
         return symbols[0].equals(symbols[1]) && symbols[0].equals(symbols[2]);
+    }
+
+    public double getWinnerType(String sym){
+        switch(sym){
+            case "7":
+                return 10;
+            case "Bell":
+                return 5;
+            case "Bar":
+                return 2;
+            case "Cherry":
+                return 1.5;
+            default:
+                throw new IllegalArgumentException("Invalid symbol: " + sym);
+        }
     }
 
     public SlotsPlayer getPlayer() {
