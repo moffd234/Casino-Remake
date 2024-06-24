@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.GameTest;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
@@ -19,12 +20,15 @@ public class SlotsGameTest {
     @Test
     public void testAdd(){
         SlotsPlayer expected = new SlotsPlayer(new CasinoAccount());
+        CasinoAccount expectedAccount = expected.getArcadeAccount();
 
         game.add(expected);
 
         SlotsPlayer actual = game.getPlayer();
+        CasinoAccount actualAccount = actual.getArcadeAccount();
 
         Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expectedAccount, actualAccount);
     }
 
     @Test
@@ -35,6 +39,7 @@ public class SlotsGameTest {
         game.remove(player);
 
         SlotsPlayer actual = game.getPlayer();
+
         Assert.assertNull(actual);
     }
 
@@ -162,8 +167,8 @@ public class SlotsGameTest {
 
         String[] sym = {"7", "7", "7"};
 
-        String expectedOutput = "You won! Payout: 1000.0";
-        String actualOutput = game.handleOutcome(100, sym);
+        boolean expectedOutput = true;
+        boolean actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 1000;
         double balanceDiff = account.getBalance() - originalBalance;
@@ -183,8 +188,8 @@ public class SlotsGameTest {
 
         String[] sym = {"Bell", "Bell", "Bell"};
 
-        String expectedOutput = "You won! Payout: 500.0";
-        String actualOutput = game.handleOutcome(100, sym);
+        boolean expectedOutput = true;
+        boolean actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 500;
         double balanceDiff = account.getBalance() - originalBalance;
@@ -204,8 +209,8 @@ public class SlotsGameTest {
 
         String[] sym = {"Bar", "Bar", "Bar"};
 
-        String expectedOutput = "You won! Payout: 200.0";
-        String actualOutput = game.handleOutcome(100, sym);
+        boolean expectedOutput = true;
+        boolean actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 200;
         double balanceDiff = account.getBalance() - originalBalance;
@@ -225,8 +230,8 @@ public class SlotsGameTest {
 
         String[] sym = {"Cherry", "Cherry", "Cherry"};
 
-        String expectedOutput = "You won! Payout: 150.0";
-        String actualOutput = game.handleOutcome(100, sym);
+        boolean expectedOutput = true;
+        boolean actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 150;
         double balanceDiff = account.getBalance() - originalBalance;
@@ -246,8 +251,8 @@ public class SlotsGameTest {
 
         String[] sym = {"Cherry", "Bar", "7"};
 
-        String expectedOutput = "You loss";
-        String actualOutput = game.handleOutcome(1850, sym);
+        boolean expectedOutput = false;
+        boolean actualOutput = game.handleOutcome(1850, sym);
 
         double expectedBalanceDiff = -1850;
         double balanceDiff = account.getBalance() - originalBalance;

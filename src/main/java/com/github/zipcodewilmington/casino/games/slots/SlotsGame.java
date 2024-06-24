@@ -13,16 +13,19 @@ import java.util.Random;
  */
 public class SlotsGame implements GamblingGameInterface {
     SlotsPlayer player;
+    CasinoAccount playerAccount;
 
     @Override
     public void add(PlayerInterface player) {
         this.player = (SlotsPlayer) player;
+        this.playerAccount = player.getArcadeAccount();
     }
 
     @Override
     public void remove(PlayerInterface player) {
         if(player == this.player) {
             this.player = null;
+            this.playerAccount = null;
         }
     }
 
@@ -84,18 +87,19 @@ public class SlotsGame implements GamblingGameInterface {
         }
     }
 
-    public String handleOutcome(double wager, String[] symbols){
-        CasinoAccount account = player.getArcadeAccount();
-        account.subtractLosses(wager);
+    public boolean handleOutcome(double wager, String[] symbols){
+        playerAccount.subtractLosses(wager);
 
         if(isWinner(symbols)){
             double multiplier = getWinnerType(symbols[0]);
-            double payout = wager * multiplier;
-            account.addWinnings(payout + wager);
-            return "You won! Payout: " + payout;
+            double payout = wager * multiplier + wager;
+            playerAccount.addWinnings(payout);
+            return true;
+
         }
-        return "You loss";
+        return false;
     }
+
 
     public SlotsPlayer getPlayer() {
         return player;
