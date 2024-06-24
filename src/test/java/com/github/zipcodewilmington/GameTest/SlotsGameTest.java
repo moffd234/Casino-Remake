@@ -167,15 +167,15 @@ public class SlotsGameTest {
 
         String[] sym = {"7", "7", "7"};
 
-        boolean expectedOutput = true;
-        boolean actualOutput = game.handleOutcome(100, sym);
+        double expectedOutput = 1000;
+        double actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 1000;
         double balanceDiff = account.getBalance() - originalBalance;
 
 
         Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
-        Assert.assertEquals(expectedOutput, actualOutput);
+        Assert.assertEquals(expectedOutput, actualOutput, .0001);
     }
 
     @Test
@@ -188,15 +188,15 @@ public class SlotsGameTest {
 
         String[] sym = {"Bell", "Bell", "Bell"};
 
-        boolean expectedOutput = true;
-        boolean actualOutput = game.handleOutcome(100, sym);
+        double expectedOutput = 500;
+        double actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 500;
         double balanceDiff = account.getBalance() - originalBalance;
 
 
         Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
-        Assert.assertEquals(expectedOutput, actualOutput);
+        Assert.assertEquals(expectedOutput, actualOutput, .0001);
     }
 
     @Test
@@ -209,15 +209,15 @@ public class SlotsGameTest {
 
         String[] sym = {"Bar", "Bar", "Bar"};
 
-        boolean expectedOutput = true;
-        boolean actualOutput = game.handleOutcome(100, sym);
+        double expectedOutput = 200;
+        double actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 200;
         double balanceDiff = account.getBalance() - originalBalance;
 
 
         Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
-        Assert.assertEquals(expectedOutput, actualOutput);
+        Assert.assertEquals(expectedOutput, actualOutput, .0001);
     }
 
     @Test
@@ -230,15 +230,15 @@ public class SlotsGameTest {
 
         String[] sym = {"Cherry", "Cherry", "Cherry"};
 
-        boolean expectedOutput = true;
-        boolean actualOutput = game.handleOutcome(100, sym);
+        double expectedOutput = 150;
+        double actualOutput = game.handleOutcome(100, sym);
 
         double expectedBalanceDiff = 150;
         double balanceDiff = account.getBalance() - originalBalance;
 
 
         Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
-        Assert.assertEquals(expectedOutput, actualOutput);
+        Assert.assertEquals(expectedOutput, actualOutput, .0001);
     }
 
     @Test
@@ -251,14 +251,14 @@ public class SlotsGameTest {
 
         String[] sym = {"Cherry", "Bar", "7"};
 
-        boolean expectedOutput = false;
-        boolean actualOutput = game.handleOutcome(1850, sym);
+        double expectedOutput = 0;
+        double actualOutput = game.handleOutcome(1850, sym);
 
         double expectedBalanceDiff = -1850;
         double balanceDiff = account.getBalance() - originalBalance;
 
 
         Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
-        Assert.assertEquals(expectedOutput, actualOutput);
+        Assert.assertEquals(expectedOutput, actualOutput, .0001);
     }
 }

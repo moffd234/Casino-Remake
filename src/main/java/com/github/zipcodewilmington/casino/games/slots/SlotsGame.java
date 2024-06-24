@@ -66,6 +66,7 @@ public class SlotsGame implements GamblingGameInterface {
         for(int i = 0; i < 3; i++){
             output[i] = givenList.get(rand.nextInt(givenList.size()));
         }
+        System.out.println(Arrays.toString(output));
         return output;
     }
     public boolean isWinner(String[] symbols){
@@ -87,19 +88,27 @@ public class SlotsGame implements GamblingGameInterface {
         }
     }
 
-    public boolean handleOutcome(double wager, String[] symbols){
+    public double handleOutcome(double wager, String[] symbols){
         playerAccount.subtractLosses(wager);
 
         if(isWinner(symbols)){
             double multiplier = getWinnerType(symbols[0]);
-            double payout = wager * multiplier + wager;
-            playerAccount.addWinnings(payout);
-            return true;
+            double payout = wager * multiplier;
+            playerAccount.addWinnings(payout + wager);
+            return payout;
 
         }
-        return false;
+        return 0;
     }
 
+    public String simGame(double wager){
+        String[] symbols = getSymbols();
+        double payout = handleOutcome(wager, symbols);
+        if(payout != 0){
+            return "You won! " + payout + "\nnew account balance: " + playerAccount.getBalance();
+        }
+        return "You loss! \nnew account balance: " + playerAccount.getBalance();
+    }
 
     public SlotsPlayer getPlayer() {
         return player;
