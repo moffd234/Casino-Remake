@@ -43,7 +43,6 @@ public class NumberGuessGame implements GamblingGameInterface {
             return "You won! The answer was " + randNum;
         }
 
-        playerAccount.subtractLosses(wager);
         return "You lost! Correct number: " + randNum;
     }
 
@@ -67,6 +66,7 @@ public class NumberGuessGame implements GamblingGameInterface {
 
         while(getContinueInput().equals("yes")){
             int wager = getWagerAmount();
+            playerAccount.subtractLosses(wager);
             int guess = getGuess();
             int randomNum = getRandomNum();
             System.out.println(handleOutcome(guess, randomNum, wager));
