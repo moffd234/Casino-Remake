@@ -12,6 +12,7 @@ import java.util.Random;
 public class NumberGuessGame implements GamblingGameInterface {
     private final IOConsole console = new IOConsole();
     private NumberGuessPlayer player;
+    private CasinoAccount playerAccount;
 
     public int getRandomNum() {
         Random random = new Random();
@@ -36,7 +37,6 @@ public class NumberGuessGame implements GamblingGameInterface {
     }
 
     public String handleOutcome(int guess, int randNum, int wager) {
-        CasinoAccount playerAccount = player.getArcadeAccount();
 
         if (guess == randNum) {
             playerAccount.addWinnings(wager);
@@ -50,12 +50,14 @@ public class NumberGuessGame implements GamblingGameInterface {
     @Override
     public void add(PlayerInterface player) {
         this.player = (NumberGuessPlayer) player;
+        this.playerAccount = player.getArcadeAccount();
     }
 
     @Override
     public void remove(PlayerInterface player) {
         if(this.player.equals(player)) {
             this.player = null;
+            this.playerAccount = null;
         }
     }
 
