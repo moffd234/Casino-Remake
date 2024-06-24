@@ -10,7 +10,7 @@ public class SlotsGame implements GamblingGameInterface {
     SlotsPlayer player;
 
     @Override
-    public int getWagerAmount() {
+    public double getWagerAmount() {
         return 0;
     }
 
