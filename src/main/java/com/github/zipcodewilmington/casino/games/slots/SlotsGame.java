@@ -31,6 +31,13 @@ public class SlotsGame implements GamblingGameInterface {
 
     @Override
     public void run() {
+        System.out.println(printWelcomeMessage());
+        System.out.println(printRules());
+
+        while(getContinueInput().equals("yes")){
+            double wager = getWagerAmount(playerAccount);
+            System.out.println(simGame(wager));
+        }
     }
 
     @Override
