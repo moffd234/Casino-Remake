@@ -2,10 +2,8 @@ package com.github.zipcodewilmington.casino.games.numberguess;
 
 import com.github.zipcodewilmington.casino.*;
 import com.github.zipcodewilmington.utils.IOConsole;
-
-import java.util.ArrayList;
 import java.util.Random;
-//TODO: TEST THE GAME AND WRITE A GetYesNoInput METHOD
+
 /**
  * Created by leon on 7/21/2020.
  */
