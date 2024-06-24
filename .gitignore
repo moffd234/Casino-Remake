@@ -561,6 +561,6 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/eclipse,intellij,netbeans,notepadpp,sublimetext,visualstudio
 
-./casinoAccounts.csv
+casinoAccounts.csv
 ./csvTest.csv
 ./casinoLogger.log

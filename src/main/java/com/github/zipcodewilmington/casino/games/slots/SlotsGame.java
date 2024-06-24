@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.slots;
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GamblingGameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
@@ -65,7 +66,7 @@ public class SlotsGame implements GamblingGameInterface {
 
         String[] output = new String[3];
         for(int i = 0; i < 3; i++){
-            output[i] = givenList.get(rand.nextInt(givenList.size()));;
+            output[i] = givenList.get(rand.nextInt(givenList.size()));
         }
         return output;
     }
@@ -86,6 +87,19 @@ public class SlotsGame implements GamblingGameInterface {
             default:
                 throw new IllegalArgumentException("Invalid symbol: " + sym);
         }
+    }
+
+    public String handleOutcome(double wager, String[] symbols){
+        CasinoAccount account = player.getArcadeAccount();
+        account.subtractLosses(wager);
+
+        if(isWinner(symbols)){
+            double multiplier = getWinnerType(symbols[0]);
+            double payout = wager * multiplier;
+            account.addWinnings(payout + wager);
+            return "You won! Payout: " + payout;
+        }
+        return "You loss";
     }
 
     public SlotsPlayer getPlayer() {

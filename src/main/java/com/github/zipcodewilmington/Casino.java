@@ -82,7 +82,7 @@ public class Casino implements Runnable {
     private void handleGameSelection(CasinoAccount account) {
         String gameSelectionInput = getGameSelectionInput().toUpperCase();
         if (gameSelectionInput.equals("SLOTS")) {
-            play(new SlotsGame(), new SlotsPlayer());
+            play(new SlotsGame(), new SlotsPlayer(account));
 
         } else if (gameSelectionInput.equals("NUMBERGUESS")) {
             NumberGuessPlayer player = new NumberGuessPlayer(account);

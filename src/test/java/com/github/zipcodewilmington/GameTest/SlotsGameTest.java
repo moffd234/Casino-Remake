@@ -1,5 +1,7 @@
 package com.github.zipcodewilmington.GameTest;
 
+import com.github.zipcodewilmington.casino.CasinoAccountManager;
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import org.junit.Assert;
@@ -16,7 +18,7 @@ public class SlotsGameTest {
 
     @Test
     public void testAdd(){
-        SlotsPlayer expected = new SlotsPlayer();
+        SlotsPlayer expected = new SlotsPlayer(new CasinoAccount());
 
         game.add(expected);
 
@@ -27,7 +29,7 @@ public class SlotsGameTest {
 
     @Test
     public void testRemove(){
-        SlotsPlayer player = new SlotsPlayer();
+        SlotsPlayer player = new SlotsPlayer(new CasinoAccount());
         game.add(player);
 
         game.remove(player);
@@ -146,8 +148,112 @@ public class SlotsGameTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testGetWinnerType_InvalidSymbol() {
-        SlotsGame game = new SlotsGame();
+    public void testGetWinnerTypeInvalidSymbol() {
         game.getWinnerType("InvalidSymbol");
+    }
+
+    @Test
+    public void testHandleOutcomeWinner7(){
+        CasinoAccount account = new CasinoAccountManager().getAccount("tester", "tester");
+        SlotsPlayer player = new SlotsPlayer(account);
+        game.add(player);
+
+        double originalBalance = account.getBalance();
+
+        String[] sym = {"7", "7", "7"};
+
+        String expectedOutput = "You won! Payout: 1000.0";
+        String actualOutput = game.handleOutcome(100, sym);
+
+        double expectedBalanceDiff = 1000;
+        double balanceDiff = account.getBalance() - originalBalance;
+
+
+        Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testHandleOutcomeWinnerBell(){
+        CasinoAccount account = new CasinoAccountManager().getAccount("tester", "tester");
+        SlotsPlayer player = new SlotsPlayer(account);
+        game.add(player);
+
+        double originalBalance = account.getBalance();
+
+        String[] sym = {"Bell", "Bell", "Bell"};
+
+        String expectedOutput = "You won! Payout: 500.0";
+        String actualOutput = game.handleOutcome(100, sym);
+
+        double expectedBalanceDiff = 500;
+        double balanceDiff = account.getBalance() - originalBalance;
+
+
+        Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testHandleOutcomeWinnerBar(){
+        CasinoAccount account = new CasinoAccountManager().getAccount("tester", "tester");
+        SlotsPlayer player = new SlotsPlayer(account);
+        game.add(player);
+
+        double originalBalance = account.getBalance();
+
+        String[] sym = {"Bar", "Bar", "Bar"};
+
+        String expectedOutput = "You won! Payout: 200.0";
+        String actualOutput = game.handleOutcome(100, sym);
+
+        double expectedBalanceDiff = 200;
+        double balanceDiff = account.getBalance() - originalBalance;
+
+
+        Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testHandleOutcomeWinnerCherry(){
+        CasinoAccount account = new CasinoAccountManager().getAccount("tester", "tester");
+        SlotsPlayer player = new SlotsPlayer(account);
+        game.add(player);
+
+        double originalBalance = account.getBalance();
+
+        String[] sym = {"Cherry", "Cherry", "Cherry"};
+
+        String expectedOutput = "You won! Payout: 150.0";
+        String actualOutput = game.handleOutcome(100, sym);
+
+        double expectedBalanceDiff = 150;
+        double balanceDiff = account.getBalance() - originalBalance;
+
+
+        Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
+        Assert.assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testHandleOutcomeLoser(){
+        CasinoAccount account = new CasinoAccountManager().getAccount("tester", "tester");
+        SlotsPlayer player = new SlotsPlayer(account);
+        game.add(player);
+
+        double originalBalance = account.getBalance();
+
+        String[] sym = {"Cherry", "Bar", "7"};
+
+        String expectedOutput = "You loss";
+        String actualOutput = game.handleOutcome(1850, sym);
+
+        double expectedBalanceDiff = -1850;
+        double balanceDiff = account.getBalance() - originalBalance;
+
+
+        Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
+        Assert.assertEquals(expectedOutput, actualOutput);
     }
 }
