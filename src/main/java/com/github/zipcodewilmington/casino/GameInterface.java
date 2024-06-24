@@ -1,5 +1,7 @@
 package com.github.zipcodewilmington.casino;
 
+import com.github.zipcodewilmington.utils.IOConsole;
+
 /**
  * Created by leon on 7/21/2020.
  */
@@ -25,4 +27,9 @@ public interface GameInterface extends Runnable {
      * prints a welcome message unique to each game
      */
     String printWelcomeMessage();
+
+    default String getContinueInput(){
+        IOConsole console = new IOConsole();
+        return console.getYesNoInput("Would you like to continue?");
+    }
 }

@@ -29,11 +29,6 @@ public class NumberGuessGame implements GamblingGameInterface {
         return input;
     }
 
-    // TODO: Find out how to make unit test for console input in V2
-    public String getContinueInput(){
-        return console.getYesNoInput("Would you like to continue?");
-    }
-
     public String handleOutcome(int guess, int randNum, double wager) {
 
         if (guess == randNum) {
