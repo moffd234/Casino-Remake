@@ -58,7 +58,7 @@ public class NumberGuessGame implements GamblingGameInterface {
         System.out.println(printWelcomeMessage());
 
         while(getContinueInput().equals("yes")){
-            double wager = getWagerAmount();
+            double wager = getWagerAmount(playerAccount);
             playerAccount.subtractLosses(wager);
             int guess = getGuess();
             int randomNum = getRandomNum();
@@ -81,16 +81,5 @@ public class NumberGuessGame implements GamblingGameInterface {
 
     public NumberGuessPlayer getPlayer() {
         return player;
-    }
-
-    @Override
-    public double getWagerAmount() {
-        double wagerAmount = console.getDoubleInput("Enter a wager amount");
-        while(wagerAmount > playerAccount.getBalance() || wagerAmount < 1.00){
-            System.out.println("Wager must be <= your total balance and > $1.00\nYour balance: "
-                    + playerAccount.getBalance());
-            wagerAmount = console.getDoubleInput("Enter a wager amount");
-        }
-        return wagerAmount;
     }
 }

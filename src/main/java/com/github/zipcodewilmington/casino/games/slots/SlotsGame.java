@@ -15,11 +15,6 @@ public class SlotsGame implements GamblingGameInterface {
     SlotsPlayer player;
 
     @Override
-    public double getWagerAmount() {
-        return 0;
-    }
-
-    @Override
     public void add(PlayerInterface player) {
         this.player = (SlotsPlayer) player;
     }
