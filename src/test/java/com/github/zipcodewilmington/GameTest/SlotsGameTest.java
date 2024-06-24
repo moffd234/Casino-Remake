@@ -57,7 +57,7 @@ public class SlotsGameTest {
     public void testRules(){
         String expected = "Rules:\n" +
                 "1. Enter a wager amount.\n" +
-                "2. Match three symbols on the payline to win.\n" +
+                "2. Match three symbols on the pay line to win.\n" +
                 "3. Payouts vary based on the symbols matched:\n" +
                 "   - Three 7s: Jackpot(10x)\n" +
                 "   - Three Bells: Big Win(5x)\n" +
@@ -84,5 +84,25 @@ public class SlotsGameTest {
         String[] symbols2 = game.getSymbols();
 
         Assert.assertNotEquals(symbols1, symbols2);
+    }
+
+    @Test
+    public void testIsWinnerTrue(){
+        String[] symbols = {"7", "7", "7"};
+        boolean actual = game.isWinner(symbols);
+        Assert.assertTrue(actual);
+    }
+    @Test
+    public void testIsWinnerTrue2(){
+        String[] symbols = {"Bar", "Bar", "Bar"};
+        boolean actual = game.isWinner(symbols);
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testIsWinnerFalse(){
+        String[] symbols = {"7", "Cherry", "Bar"};
+        boolean actual = game.isWinner(symbols);
+        Assert.assertFalse(actual);
     }
 }

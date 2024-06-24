@@ -61,13 +61,17 @@ public class SlotsGame implements GamblingGameInterface {
     public String printRules() {
         return "Rules:\n" +
                 "1. Enter a wager amount.\n" +
-                "2. Match three symbols on the payline to win.\n" +
+                "2. Match three symbols on the pay line to win.\n" +
                 "3. Payouts vary based on the symbols matched:\n" +
                 "   - Three 7s: Jackpot(10x)\n" +
                 "   - Three Bells: Big Win(5x)\n" +
                 "   - Three Bars: Medium Win (2x)\n" +
                 "   - Three Cherries: Small Win (1.5x)\n" +
                 "   - Any other combination: No Win\n";
+    }
+
+    public Boolean isWinner(String[] symbols){
+        return symbols[0].equals(symbols[1]) && symbols[0].equals(symbols[2]);
     }
 
     public SlotsPlayer getPlayer() {
