@@ -1,4 +1,4 @@
-package com.github.zipcodewilmington.GameTest;
+package com.github.zipcodewilmington.GameTest.NumberGuess;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
@@ -6,8 +6,6 @@ import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 public class NumberGuessGameTest {
     private NumberGuessGame game;

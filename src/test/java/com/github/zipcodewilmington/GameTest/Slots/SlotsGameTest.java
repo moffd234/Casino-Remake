@@ -1,6 +1,5 @@
-package com.github.zipcodewilmington.GameTest;
+package com.github.zipcodewilmington.GameTest.Slots;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
