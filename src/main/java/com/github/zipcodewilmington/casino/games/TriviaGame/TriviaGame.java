@@ -32,7 +32,7 @@ public class TriviaGame implements GameInterface {
         return "";
     }
 
-    public Response getQuestionResponse(){
+    public String getQuestionResponse(){
         final OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
                 .url("https://opentdb.com/api.php?amount=10&difficulty=easy&type=boolean").build();
@@ -40,8 +40,9 @@ public class TriviaGame implements GameInterface {
         Call call = client.newCall(request);
         try {
             Response response = call.execute();
+            String output = response.body().string();
             response.close();
-            return response;
+            return output;
         } catch (IOException e) {
             FileLogger.logSevere("Error getting question response " + e.getMessage());
         }
