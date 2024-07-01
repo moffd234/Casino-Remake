@@ -1,5 +1,7 @@
 package com.github.zipcodewilmington.casino.games.TriviaGame;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
@@ -10,6 +12,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TriviaGame implements GameInterface {
     @Override
@@ -55,5 +59,28 @@ public class TriviaGame implements GameInterface {
         }
         return null;
     }
+
+    public ArrayList<Question> getQuestions(String jsonString){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            JsonNode jsonNode = objectMapper.readTree(jsonString);
+            ArrayList<Question> questions = new ArrayList<>();
+
+            JsonNode results = jsonNode.get("results");
+            if (results.isArray()) {
+                for (JsonNode result : results) {
+                    Question question = new Question(result.get("question").asText(), result.get("correct_answer").asText());
+                    questions.add(question);
+                }
+            }
+
+            return questions;
+        } catch (IOException e) {
+            FileLogger.logSevere("Error parsing questions " + e.getMessage());
+        }
+        return null;
+    }
+
+
 
 }
