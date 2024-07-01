@@ -1,9 +1,12 @@
 package com.github.zipcodewilmington.GameTest.Trivia;
 
+import com.github.zipcodewilmington.casino.games.TriviaGame.Question;
 import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGame;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 public class TriviaGameTest {
     TriviaGame game;
@@ -35,5 +38,20 @@ public class TriviaGameTest {
         String actual = game.printWelcomeMessage();
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetQuestions() {
+        String jsonString = "{\"response_code\":0,\"results\":[{\"type\":\"boolean\",\"difficulty\":\"easy\"," +
+                "\"category\":\"General Knowledge\",\"question\":" +
+                "\"Scotland voted to become an independent country during the referendum from September 2014.\"," +
+                "\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]}]}";
+
+        ArrayList<Question> questions = game.getQuestions(jsonString);
+
+        Assert.assertEquals(
+                "Scotland voted to become an independent country during the referendum from September 2014.",
+                questions.get(0).getQ());
+        Assert.assertEquals("False", questions.get(0).getA());
     }
 }
