@@ -1,7 +1,6 @@
 package com.github.zipcodewilmington.GameTest.Slots;
 
-import com.github.zipcodewilmington.casino.CasinoAccountManager;
-import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.*;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import org.junit.Assert;
@@ -259,5 +258,11 @@ public class SlotsGameTest {
 
         Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
         Assert.assertEquals(expectedOutput, actualOutput, .0001);
+    }
+
+    @Test
+    public void testIsInstanceOfGameInterface(){
+        Assert.assertTrue(game instanceof GameInterface);
+        Assert.assertTrue(game instanceof GamblingGameInterface);
     }
 }

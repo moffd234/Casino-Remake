@@ -2,7 +2,6 @@ package com.github.zipcodewilmington.GameTest.Trivia;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.PlayerInterface;
-import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGame;
 import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGamePlayer;
 import org.junit.Assert;
 import org.junit.Test;
