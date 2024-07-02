@@ -4,6 +4,8 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.CasinoAccountManager;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGame;
+import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGamePlayer;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
@@ -88,6 +90,10 @@ public class Casino implements Runnable {
             NumberGuessPlayer player = new NumberGuessPlayer(account);
             play(new NumberGuessGame(), player);
 
+        } else if (gameSelectionInput.equals("TRIVIA")) {
+            TriviaGamePlayer player = new TriviaGamePlayer(account);
+            play(new TriviaGame(), player);
+
         } else {
             System.out.println("Invalid game selection");
             handleGameSelection(account);
@@ -127,7 +133,7 @@ public class Casino implements Runnable {
     private String getGameSelectionInput() {
         return console.getStringInput("Welcome to the Game Selection Dashboard!" +
                 "\nFrom here, you can select any of the following options:" +
-                "\n\t[ SLOTS ], [ NUMBERGUESS ]");
+                "\n\t[ SLOTS ], [ NUMBERGUESS ], [ TRIVIA ]");
     }
 
     private String promptManageOrSelect(){
