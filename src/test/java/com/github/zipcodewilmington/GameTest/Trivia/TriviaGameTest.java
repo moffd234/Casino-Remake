@@ -121,6 +121,24 @@ public class TriviaGameTest {
     }
 
     @Test
+    public void testPrintGameOver(){
+        String expected = "Game Over! Score: 10/10";
+
+        String actual = game.printGameOver(10);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPrintGameOverZero(){
+        String expected = "Game Over! Score: 0/10";
+
+        String actual = game.printGameOver(0);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
     public void testIsInstanceOfGameInterface(){
         Assert.assertTrue(game instanceof TriviaGame);
     }

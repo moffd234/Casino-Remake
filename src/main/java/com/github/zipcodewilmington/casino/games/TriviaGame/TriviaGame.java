@@ -106,4 +106,8 @@ public class TriviaGame implements GameInterface {
         System.out.println("Incorrect");
         return false;
     }
+
+    public String printGameOver(int score){
+        return "Game Over! Score: " + score + "/10";
+    }
 }
