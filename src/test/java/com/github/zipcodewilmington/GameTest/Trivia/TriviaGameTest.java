@@ -54,4 +54,23 @@ public class TriviaGameTest {
                 questions.get(0).getQ());
         Assert.assertEquals("False", questions.get(0).getA());
     }
+
+    @Test
+    public void testGetQuestions_EmptyResults() {
+        String jsonString = "{\"response_code\":0,\"results\":[]}";
+
+        ArrayList<Question> questions = game.getQuestions(jsonString);
+
+        Assert.assertTrue(questions.isEmpty());
+    }
+
+    @Test
+    public void testGetQuestions_InvalidJson() {
+        String jsonString = "Test Invalid JSON";
+        TriviaGame triviaGame = new TriviaGame();
+
+        ArrayList<Question> questions = triviaGame.getQuestions(jsonString);
+
+       Assert.assertNull(questions);
+    }
 }

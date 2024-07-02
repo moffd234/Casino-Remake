@@ -73,7 +73,6 @@ public class SlotsGame implements GamblingGameInterface {
         for(int i = 0; i < 3; i++){
             output[i] = givenList.get(rand.nextInt(givenList.size()));
         }
-        System.out.println(Arrays.toString(output));
         return output;
     }
     public boolean isWinner(String[] symbols){
