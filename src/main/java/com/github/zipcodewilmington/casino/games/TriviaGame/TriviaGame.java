@@ -37,6 +37,18 @@ public class TriviaGame implements GameInterface {
 
     @Override
     public void run() {
+        System.out.println(printWelcomeMessage());
+
+        while(getContinueInput().equals("yes")){
+            int score = 0;
+            ArrayList<Question> questions = getQuestions(getQuestionResponse());
+            for(Question question : questions){
+                if(handleQuestion(question)){
+                    score++;
+                }
+            }
+            System.out.println(printGameOver(score));
+        }
     }
 
     @Override
