@@ -13,7 +13,7 @@ public class Question {
         return q;
     }
 
-    public String getA() {
-        return a;
+    public boolean getA() {
+        return Boolean.parseBoolean(a);
     }
 }
