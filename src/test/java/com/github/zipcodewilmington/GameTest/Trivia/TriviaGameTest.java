@@ -79,7 +79,7 @@ public class TriviaGameTest {
 
     @Test
     public void testAdd(){
-        CasinoAccount expectedAccount = new CasinoAccount();
+        CasinoAccount expectedAccount = new CasinoAccount("tester","tester");
         PlayerInterface expectedPlayer = new TriviaGamePlayer(expectedAccount);
 
         game.add(expectedPlayer);
@@ -93,7 +93,7 @@ public class TriviaGameTest {
 
     @Test
     public void testRemove(){
-        CasinoAccount account = new CasinoAccount();
+        CasinoAccount account = new CasinoAccount("tester","tester");
         PlayerInterface player = new TriviaGamePlayer(account);
 
         game.add(player);
@@ -103,5 +103,10 @@ public class TriviaGameTest {
         PlayerInterface actualPlayer = game.getPlayer();
 
         Assert.assertNull(actualPlayer);
+    }
+
+    @Test
+    public void testIsInstanceOfGameInterface(){
+        Assert.assertTrue(game instanceof TriviaGame);
     }
 }
