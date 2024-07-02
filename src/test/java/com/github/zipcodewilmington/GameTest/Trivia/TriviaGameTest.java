@@ -55,7 +55,22 @@ public class TriviaGameTest {
         Assert.assertEquals(
                 "Scotland voted to become an independent country during the referendum from September 2014.",
                 questions.get(0).getQ());
-        Assert.assertEquals("False", questions.get(0).getA());
+        Assert.assertFalse(questions.get(0).getA());
+    }
+
+    @Test
+    public void testGetQuestionsTrue() {
+        String jsonString = "{\"response_code\":0,\"results\":[{\"type\":\"boolean\",\"difficulty\":\"easy\"," +
+                "\"category\":\"General Knowledge\",\"question\":" +
+                "\"Scotland voted to become an independent country during the referendum from September 2014.\"," +
+                "\"correct_answer\":\"True\",\"incorrect_answers\":[\"True\"]}]}";
+
+        ArrayList<Question> questions = game.getQuestions(jsonString);
+
+        Assert.assertEquals(
+                "Scotland voted to become an independent country during the referendum from September 2014.",
+                questions.get(0).getQ());
+        Assert.assertTrue(questions.get(0).getA());
     }
 
     @Test

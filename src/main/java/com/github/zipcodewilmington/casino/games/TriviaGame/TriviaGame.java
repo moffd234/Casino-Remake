@@ -7,6 +7,7 @@ import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
 import com.github.zipcodewilmington.utils.FileLogger;
+import com.github.zipcodewilmington.utils.IOConsole;
 import okhttp3.OkHttpClient;
 import okhttp3.Call;
 import okhttp3.Request;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class TriviaGame implements GameInterface {
     TriviaGamePlayer player;
     CasinoAccount playerAccount;
+    IOConsole console = new IOConsole();
 
     @Override
     public void add(PlayerInterface player) {
@@ -35,7 +37,6 @@ public class TriviaGame implements GameInterface {
 
     @Override
     public void run() {
-
     }
 
     @Override
@@ -93,5 +94,16 @@ public class TriviaGame implements GameInterface {
 
     public TriviaGamePlayer getPlayer() {
         return player;
+    }
+
+    public boolean handleQuestion(Question question){
+        System.out.println(question.getQ());
+        boolean input = console.getBooleanInput("[True] [False]");
+        if(input == question.getA()){
+            System.out.println("Correct");
+            return true;
+        }
+        System.out.println("Incorrect");
+        return false;
     }
 }
