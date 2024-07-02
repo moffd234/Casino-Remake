@@ -1,7 +1,10 @@
 package com.github.zipcodewilmington.GameTest.Trivia;
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.TriviaGame.Question;
 import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGame;
+import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGamePlayer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -72,5 +75,33 @@ public class TriviaGameTest {
         ArrayList<Question> questions = triviaGame.getQuestions(jsonString);
 
        Assert.assertNull(questions);
+    }
+
+    @Test
+    public void testAdd(){
+        CasinoAccount expectedAccount = new CasinoAccount();
+        PlayerInterface expectedPlayer = new TriviaGamePlayer(expectedAccount);
+
+        game.add(expectedPlayer);
+
+        PlayerInterface actualPlayer = game.getPlayer();
+        CasinoAccount actualAccount = actualPlayer.getArcadeAccount();
+
+        Assert.assertEquals(expectedAccount, actualAccount);
+        Assert.assertEquals(expectedPlayer, actualPlayer);
+    }
+
+    @Test
+    public void testRemove(){
+        CasinoAccount account = new CasinoAccount();
+        PlayerInterface player = new TriviaGamePlayer(account);
+
+        game.add(player);
+
+        game.remove(player);
+
+        PlayerInterface actualPlayer = game.getPlayer();
+
+        Assert.assertNull(actualPlayer);
     }
 }

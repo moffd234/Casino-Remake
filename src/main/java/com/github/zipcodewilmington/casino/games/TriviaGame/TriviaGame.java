@@ -27,7 +27,10 @@ public class TriviaGame implements GameInterface {
 
     @Override
     public void remove(PlayerInterface player) {
-
+        if(this.player == player){
+            this.player = null;
+            this.playerAccount = null;
+        }
     }
 
     @Override
@@ -88,6 +91,7 @@ public class TriviaGame implements GameInterface {
         return null;
     }
 
-
-
+    public TriviaGamePlayer getPlayer() {
+        return player;
+    }
 }
