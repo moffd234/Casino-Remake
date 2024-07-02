@@ -13,7 +13,6 @@ import okhttp3.Response;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TriviaGame implements GameInterface {
     @Override
@@ -51,9 +50,12 @@ public class TriviaGame implements GameInterface {
         Call call = client.newCall(request);
         try {
             Response response = call.execute();
-            String output = response.body().string();
+            if(response.body() != null) {
+                String output = response.body().string();
+                response.close();
+                return output;
+            }
             response.close();
-            return output;
         } catch (IOException e) {
             FileLogger.logSevere("Error getting question response " + e.getMessage());
         }

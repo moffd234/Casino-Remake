@@ -19,8 +19,9 @@ public class CSVUtilsTest {
     @Test
     public void testFileCreation() throws IOException {
         String csvPath = "./csvTest.csv";
-        if(new File(csvPath).exists()){
-            Assert.fail("Delete csvTest file");
+        File file = new File(csvPath);
+        if(file.exists()){
+            file.delete();
         }
 
         // Write data to csv
