@@ -2,6 +2,7 @@ package com.github.zipcodewilmington.casino.games.TriviaGame;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
@@ -15,9 +16,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TriviaGame implements GameInterface {
+    TriviaGamePlayer player;
+    CasinoAccount playerAccount;
+
     @Override
     public void add(PlayerInterface player) {
-
+        this.player = (TriviaGamePlayer) player;
+        this.playerAccount = player.getArcadeAccount();
     }
 
     @Override
