@@ -1,6 +1,8 @@
 package com.github.zipcodewilmington.GameTest.NumberGuess;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.GamblingGameInterface;
+import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
 import org.junit.Assert;
@@ -63,6 +65,12 @@ public class NumberGuessGameTest {
 
         String actual = game.printWelcomeMessage();
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testIsInstanceOfGameInterface(){
+        Assert.assertTrue(game instanceof GameInterface);
+        Assert.assertTrue(game instanceof GamblingGameInterface);
     }
 
     // TODO - handle wager input which currently causes the tests to fail
