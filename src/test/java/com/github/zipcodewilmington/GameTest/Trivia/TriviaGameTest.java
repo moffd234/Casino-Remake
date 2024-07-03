@@ -1,5 +1,7 @@
 package com.github.zipcodewilmington.GameTest.Trivia;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.TriviaGame.Question;
@@ -136,6 +138,20 @@ public class TriviaGameTest {
         String actual = game.printGameOver(0);
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testCreateQuestion() throws Exception {
+        String jsonString = "{\"question\":\"In Pok&eacute;mon, Pikachu is an Electric-type Pok&eacute;mon.\",\"correct_answer\":\"True\"}";
+        JsonNode node = new ObjectMapper().readTree(jsonString);
+        String expectedQuestion = "In Pokémon, Pikachu is an Electric-type Pokémon.";
+        Question result = game.createQuestion(node);
+
+        String actualQuestion = result.getQ();
+        boolean actualAnswer = result.getA();
+
+        Assert.assertEquals(expectedQuestion, actualQuestion);
+        Assert.assertTrue(actualAnswer);
     }
 
     @Test
