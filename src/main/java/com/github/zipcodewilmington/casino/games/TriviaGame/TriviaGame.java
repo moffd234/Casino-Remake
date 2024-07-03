@@ -93,7 +93,7 @@ public class TriviaGame implements GameInterface {
             JsonNode results = jsonNode.get("results");
             if (results.isArray()) {
                 for (JsonNode result : results) {
-                    Question question = new Question(result.get("question").asText(), result.get("correct_answer").asText());
+                    Question question = createQuestion(result);
                     questions.add(question);
                 }
             }
