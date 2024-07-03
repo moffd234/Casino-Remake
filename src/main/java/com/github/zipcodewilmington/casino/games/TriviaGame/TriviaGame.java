@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,7 +97,6 @@ public class TriviaGame implements GameInterface {
                     questions.add(question);
                 }
             }
-
             return questions;
         } catch (IOException e) {
             FileLogger.logSevere("Error parsing questions " + e.getMessage());
@@ -111,15 +111,23 @@ public class TriviaGame implements GameInterface {
     public boolean handleQuestion(Question question){
         System.out.println(question.getQ());
         boolean input = console.getBooleanInput("[True] [False]");
+
         if(input == question.getA()){
             System.out.println("Correct");
             return true;
         }
+
         System.out.println("Incorrect");
         return false;
     }
 
     public String printGameOver(int score){
         return "Game Over! Score: " + score + "/10";
+    }
+
+    public Question createQuestion(JsonNode node){
+        String decodedQuestion = StringEscapeUtils.unescapeHtml4(node.get("question").asText());
+        String decodedAnswer = StringEscapeUtils.unescapeHtml4(node.get("correct_answer").asText());
+        return new Question(decodedQuestion, decodedAnswer);
     }
 }
