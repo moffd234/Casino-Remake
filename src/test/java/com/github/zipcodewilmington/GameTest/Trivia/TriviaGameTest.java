@@ -15,10 +15,12 @@ import java.util.ArrayList;
 
 public class TriviaGameTest {
     TriviaGame game;
+    ObjectMapper objectMapper;
 
     @Before
     public void setUp(){
         game = new TriviaGame();
+        objectMapper =new ObjectMapper();
     }
 
     @Test
@@ -141,9 +143,10 @@ public class TriviaGameTest {
     }
 
     @Test
-    public void testCreateQuestion() throws Exception {
-        String jsonString = "{\"question\":\"In Pok&eacute;mon, Pikachu is an Electric-type Pok&eacute;mon.\",\"correct_answer\":\"True\"}";
-        JsonNode node = new ObjectMapper().readTree(jsonString);
+    public void testCreateQuestionAccent() throws Exception {
+        String jsonString = "{\"question\":\"In Pok&eacute;mon, Pikachu is an Electric-type Pok&eacute;mon.\"," +
+                "\"correct_answer\":\"True\"}";
+        JsonNode node = objectMapper.readTree(jsonString);
         String expectedQuestion = "In Pokémon, Pikachu is an Electric-type Pokémon.";
         Question result = game.createQuestion(node);
 
@@ -153,6 +156,54 @@ public class TriviaGameTest {
         Assert.assertEquals(expectedQuestion, actualQuestion);
         Assert.assertTrue(actualAnswer);
     }
+
+    @Test
+    public void testCreateQuestionQuote() throws Exception {
+        String jsonString = "{\"question\":\"The quote &quot;I am become death, destroyer of worlds&quot; " +
+                "is from the Bhagavad Gita.\",\"correct_answer\":\"True\"}";
+        JsonNode node = objectMapper.readTree(jsonString);
+        String expectedQuestion = "The quote \"I am become death, destroyer of worlds\" is from the Bhagavad Gita.";
+        Question result = game.createQuestion(node);
+
+        String actualQuestion = result.getQ();
+        boolean actualAnswer = result.getA();
+
+        Assert.assertEquals(expectedQuestion, actualQuestion);
+        Assert.assertTrue(actualAnswer);
+    }
+
+    @Test
+    public void testCreateQuestionApostrophe() throws Exception {
+        String jsonString = "{\"question\":\"Tony Hawk&#039;s extreme sports videogames revolve around performing " +
+                "professional BMX tricks.\",\"correct_answer\":\"True\"}";
+        JsonNode node = objectMapper.readTree(jsonString);
+        String expectedQuestion = "Tony Hawk's extreme sports videogames revolve around performing" +
+                " professional BMX tricks.";
+        Question result = game.createQuestion(node);
+
+        String actualQuestion = result.getQ();
+        boolean actualAnswer = result.getA();
+
+        Assert.assertEquals(expectedQuestion, actualQuestion);
+        Assert.assertTrue(actualAnswer);
+    }
+
+    @Test
+    public void testCreateQuestionAmpersand() throws Exception {
+        String jsonString = "{\"question\":\"The Nike company &amp; logo was named after the Greek goddess of victory.\"," +
+                "\"correct_answer\":\"True\"}";
+        JsonNode node = objectMapper.readTree(jsonString);
+        String expectedQuestion = "The Nike company & logo was named after the Greek goddess of victory.";
+        Question result = game.createQuestion(node);
+
+        String actualQuestion = result.getQ();
+        boolean actualAnswer = result.getA();
+
+        Assert.assertEquals(expectedQuestion, actualQuestion);
+        Assert.assertTrue(actualAnswer);
+    }
+
+
 
     @Test
     public void testIsInstanceOfGameInterface(){
