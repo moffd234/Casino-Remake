@@ -1,4 +1,26 @@
 package com.github.zipcodewilmington.casino.games.TicTacToe;
 
-public class TicTacToe {
+import com.github.zipcodewilmington.casino.GameInterface;
+import com.github.zipcodewilmington.casino.PlayerInterface;
+
+public class TicTacToe implements GameInterface {
+    @Override
+    public void add(PlayerInterface player) {
+
+    }
+
+    @Override
+    public void remove(PlayerInterface player) {
+
+    }
+
+    @Override
+    public void run() {
+
+    }
+
+    @Override
+    public String printWelcomeMessage() {
+        return "";
+    }
 }
