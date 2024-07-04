@@ -7,6 +7,7 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.TriviaGame.Question;
 import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGame;
 import com.github.zipcodewilmington.casino.games.TriviaGame.TriviaGamePlayer;
+import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -203,6 +204,12 @@ public class TriviaGameTest {
         Assert.assertTrue(actualAnswer);
     }
 
+    @Test
+    public void testGetPlayerNull(){
+        TriviaGamePlayer actual = game.getPlayer();
+
+        Assert.assertNull(actual);
+    }
 
 
     @Test

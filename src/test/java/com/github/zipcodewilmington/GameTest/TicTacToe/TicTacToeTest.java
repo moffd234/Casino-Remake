@@ -1,6 +1,5 @@
-package com.github.zipcodewilmington.GameTest;
+package com.github.zipcodewilmington.GameTest.TicTacToe;
 
-import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.games.TicTacToe.TicTacToe;
 import com.github.zipcodewilmington.casino.games.TicTacToe.TicTacToePlayer;

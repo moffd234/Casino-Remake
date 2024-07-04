@@ -5,6 +5,7 @@ import com.github.zipcodewilmington.casino.GamblingGameInterface;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
+import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,6 +66,13 @@ public class NumberGuessGameTest {
 
         String actual = game.printWelcomeMessage();
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testGetPlayerNull(){
+        NumberGuessPlayer actual = game.getPlayer();
+
+        Assert.assertNull(actual);
     }
 
     @Test

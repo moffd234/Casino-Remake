@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.GameTest.Slots;
 
 import com.github.zipcodewilmington.casino.*;
+import com.github.zipcodewilmington.casino.games.TicTacToe.TicTacToePlayer;
 import com.github.zipcodewilmington.casino.games.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
 import org.junit.Assert;
@@ -258,6 +259,13 @@ public class SlotsGameTest {
 
         Assert.assertEquals(expectedBalanceDiff, balanceDiff, .0001);
         Assert.assertEquals(expectedOutput, actualOutput, .0001);
+    }
+
+    @Test
+    public void testGetPlayerNull(){
+        SlotsPlayer actual = game.getPlayer();
+
+        Assert.assertNull(actual);
     }
 
     @Test
