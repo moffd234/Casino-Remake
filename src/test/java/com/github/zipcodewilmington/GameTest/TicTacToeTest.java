@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.GameTest;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.games.TicTacToe.TicTacToe;
 import com.github.zipcodewilmington.casino.games.TicTacToe.TicTacToePlayer;
 import org.junit.Assert;
@@ -36,5 +37,17 @@ public class TicTacToeTest {
         TicTacToePlayer actual = game.getPlayer();
 
         Assert.assertNull(actual);
+    }
+
+    @Test
+    public void testGetPlayerNull(){
+        TicTacToePlayer actual = game.getPlayer();
+
+        Assert.assertNull(actual);
+    }
+
+    @Test
+    public void testInheritance(){
+        Assert.assertTrue(game instanceof GameInterface);
     }
 }
