@@ -5,7 +5,7 @@ import com.github.zipcodewilmington.casino.GamblingGameInterface;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessGame;
 import com.github.zipcodewilmington.casino.games.numberguess.NumberGuessPlayer;
-import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,6 @@ public class NumberGuessGameTest {
     @Before
     public void setUp(){
         game = new NumberGuessGame();
-
     }
 
     @Test
@@ -81,18 +80,4 @@ public class NumberGuessGameTest {
         Assert.assertTrue(game instanceof GamblingGameInterface);
     }
 
-    // TODO - handle wager input which currently causes the tests to fail
-//    @Test
-//    public void testHandleOutcomeWin() {
-//        String expected = "You won! The answer was 0";
-//        String actual = game.handleOutcome(0, 0, 0);
-//        Assert.assertEquals(expected, actual);
-//    }
-//
-//    @Test
-//    public void testHandleOutcomeLose() {
-//        String expected = "You lost! Correct number: 2";
-//        String actual = game.handleOutcome(0, 2, 0);
-//        Assert.assertEquals(expected, actual);
-//    }
 }

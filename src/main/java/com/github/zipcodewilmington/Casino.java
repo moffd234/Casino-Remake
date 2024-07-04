@@ -83,20 +83,27 @@ public class Casino implements Runnable {
 
     private void handleGameSelection(CasinoAccount account) {
         String gameSelectionInput = getGameSelectionInput().toUpperCase();
-        if (gameSelectionInput.equals("SLOTS")) {
-            play(new SlotsGame(), new SlotsPlayer(account));
+        switch (gameSelectionInput) {
+            case "SLOTS":
+                play(new SlotsGame(), new SlotsPlayer(account));
 
-        } else if (gameSelectionInput.equals("NUMBERGUESS")) {
-            NumberGuessPlayer player = new NumberGuessPlayer(account);
-            play(new NumberGuessGame(), player);
+                break;
+            case "NUMBERGUESS": {
+                NumberGuessPlayer player = new NumberGuessPlayer(account);
+                play(new NumberGuessGame(), player);
 
-        } else if (gameSelectionInput.equals("TRIVIA")) {
-            TriviaGamePlayer player = new TriviaGamePlayer(account);
-            play(new TriviaGame(), player);
+                break;
+            }
+            case "TRIVIA": {
+                TriviaGamePlayer player = new TriviaGamePlayer(account);
+                play(new TriviaGame(), player);
 
-        } else {
-            System.out.println("Invalid game selection");
-            handleGameSelection(account);
+                break;
+            }
+            default:
+                System.out.println("Invalid game selection");
+                handleGameSelection(account);
+                break;
         }
     }
 
