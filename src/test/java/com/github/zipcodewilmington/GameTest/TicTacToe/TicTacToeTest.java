@@ -59,6 +59,15 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testGetGameBoardEmpty(){
+        String[][] expected = new String[3][3];
+        String[][] actual = game.getGameBoard();
+
+        Assert.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }

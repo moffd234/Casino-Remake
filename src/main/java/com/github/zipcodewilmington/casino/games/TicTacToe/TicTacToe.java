@@ -4,7 +4,11 @@ import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
 public class TicTacToe implements GameInterface {
-    TicTacToePlayer player;
+
+    private final int ROWS = 3;
+    private final int COLS = 3;
+    private TicTacToePlayer player;
+    private String[][] gameBoard = new String[ROWS][COLS];
 
     @Override
     public void add(PlayerInterface player) {
@@ -37,5 +41,9 @@ public class TicTacToe implements GameInterface {
 
     public TicTacToePlayer getPlayer() {
         return player;
+    }
+
+    public String[][] getGameBoard() {
+        return gameBoard;
     }
 }
