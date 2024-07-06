@@ -115,11 +115,12 @@ public class TicTacToeTest {
         char expected = 'o';
 
         game.initGameBoard();
-        game.placeTurn(0, 0);
+        boolean placed = game.placeTurn(0, 0);
 
         char actual = game.getTurn();
 
         Assert.assertEquals(expected, actual);
+        Assert.assertTrue(placed);
     }
 
     @Test
@@ -128,7 +129,7 @@ public class TicTacToeTest {
         char expectedTurnVal = 'o';
 
         game.initGameBoard();
-        game.placeTurn(0, 0);
+        boolean placed = game.placeTurn(0, 0);
 
         char[][] gameBoard = game.getGameBoard();
         char actualCellVal = gameBoard[0][0];
@@ -136,6 +137,7 @@ public class TicTacToeTest {
 
         Assert.assertEquals(expectedCellVal, actualCellVal);
         Assert.assertEquals(expectedTurnVal, actualTurnVal);
+        Assert.assertTrue(placed);
     }
 
     @Test
@@ -145,13 +147,15 @@ public class TicTacToeTest {
 
         game.initGameBoard();
 
-        game.placeTurn(0, 0);
+        boolean placed = game.placeTurn(0, 0);
 
         char[][] gameBoard = game.getGameBoard();
         char actualCellVal = gameBoard[0][0];
         char actualTurnVal = game.getTurn();
 
-        game.placeTurn(0, 0);
+        Assert.assertTrue(placed);
+
+        placed = game.placeTurn(0, 0);
 
         Assert.assertEquals(expectedCellVal, actualCellVal);
         Assert.assertEquals(expectedTurnVal, actualTurnVal);
@@ -163,6 +167,7 @@ public class TicTacToeTest {
 
         Assert.assertEquals(expectedCellVal, actualCellVal);
         Assert.assertEquals(expectedTurnVal, actualTurnVal);
+        Assert.assertFalse(placed);
     }
 
     @Test

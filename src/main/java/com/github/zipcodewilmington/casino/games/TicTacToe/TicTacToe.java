@@ -53,11 +53,13 @@ public class TicTacToe implements GameInterface {
         return gameBoard[row][col] != ' ';
     }
 
-    public void placeTurn(int row, int col){
+    public boolean placeTurn(int row, int col){
         if(!isCellOccupied(row, col)) {
             gameBoard[row][col] = turn;
             turn = (turn == 'x') ? 'o' : 'x';
+            return true;
         }
+        return false;
     }
 
     public char getTurn() {
