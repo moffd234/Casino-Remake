@@ -46,4 +46,12 @@ public class TicTacToe implements GameInterface {
     public String[][] getGameBoard() {
         return gameBoard;
     }
+
+    public void initGameBoard(){
+        for(int i = 0; i < ROWS; i++){
+            for(int j = 0; j < COLS; j++){
+                gameBoard[i][j] = " ";
+            }
+        }
+    }
 }
