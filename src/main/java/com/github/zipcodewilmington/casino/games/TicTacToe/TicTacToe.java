@@ -8,7 +8,7 @@ public class TicTacToe implements GameInterface {
     private final int ROWS = 3;
     private final int COLS = 3;
     private TicTacToePlayer player;
-    private String[][] gameBoard = new String[ROWS][COLS];
+    private char[][] gameBoard = new char[ROWS][COLS];
 
     @Override
     public void add(PlayerInterface player) {
@@ -39,19 +39,19 @@ public class TicTacToe implements GameInterface {
                 "|__/     \\__/ \\_______/|__/ \\_______/ \\______/ |__/ |__/ |__/ \\_______/         |__/ \\______/          |__/   |______/ \\______/    |__/  |__/  |__/ \\______/    |__/   \\______/ |________/";
     }
 
+    public void initGameBoard(){
+        for(int i = 0; i < ROWS; i++){
+            for(int j = 0; j < COLS; j++){
+                gameBoard[i][j] = ' ';
+            }
+        }
+    }
+
     public TicTacToePlayer getPlayer() {
         return player;
     }
 
-    public String[][] getGameBoard() {
+    public char[][] getGameBoard() {
         return gameBoard;
-    }
-
-    public void initGameBoard(){
-        for(int i = 0; i < ROWS; i++){
-            for(int j = 0; j < COLS; j++){
-                gameBoard[i][j] = " ";
-            }
-        }
     }
 }

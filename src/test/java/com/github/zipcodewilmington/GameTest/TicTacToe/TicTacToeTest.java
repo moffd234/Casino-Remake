@@ -62,8 +62,8 @@ public class TicTacToeTest {
 
     @Test
     public void testGetGameBoardEmpty(){
-        String[][] expected = new String[3][3];
-        String[][] actual = game.getGameBoard();
+        char[][] expected = new char[3][3];
+        char[][] actual = game.getGameBoard();
 
         Assert.assertArrayEquals(expected, actual);
     }
@@ -71,14 +71,18 @@ public class TicTacToeTest {
     @Test
     public void testInitGameBoard(){
         game.initGameBoard();
-        String[][] GameBoard = game.getGameBoard();
-        String expected = " ";
+        char[][] GameBoard = game.getGameBoard();
+        char expected = ' ';
 
-        for (String[] strings : GameBoard) {
-            for (String actual : strings) {
+        for (char[] chars : GameBoard) {
+            for (char actual : chars) {
                 Assert.assertEquals(expected, actual);
             }
         }
+    }
+
+    @Test
+    public void testGetWinner(){
 
     }
 
