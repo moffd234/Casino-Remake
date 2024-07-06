@@ -90,7 +90,16 @@ public class TicTacToeTest {
         Assert.assertFalse(actual);
     }
 
-    // TODO: Implement cellAlreadyOccupiedFalse once we write placeTurn method
+    @Test
+    public void testCellAlreadyOccupiedTrue(){
+        game.initGameBoard();
+
+        game.placeTurn(0, 0);
+
+        boolean actual = game.isCellOccupied(0, 0);
+
+        Assert.assertTrue(actual);
+    }
 
     @Test
     public void testGetTurn(){
