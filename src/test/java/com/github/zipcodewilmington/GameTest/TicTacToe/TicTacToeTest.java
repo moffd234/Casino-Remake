@@ -171,6 +171,27 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testPrintCell(){
+        String expected = " x ";
+
+        game.initGameBoard();
+        game.placeTurn(0,0);
+
+        String actual = game.printCell(0, 0);
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testLineSeparator(){
+        String expected = "---+---+---\n";
+
+        String actual = game.printLineSeparator();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }

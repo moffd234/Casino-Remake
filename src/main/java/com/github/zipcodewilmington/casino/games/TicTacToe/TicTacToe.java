@@ -62,6 +62,14 @@ public class TicTacToe implements GameInterface {
         return false;
     }
 
+    public String printCell(int row, int col){
+        return " " + gameBoard[row][col] + " ";
+    }
+
+    public String printLineSeparator(){
+        return "---+---+---\n";
+    }
+
     public char getTurn() {
         return turn;
     }
