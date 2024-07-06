@@ -110,7 +110,15 @@ public class TicTacToeTest {
         Assert.assertEquals(expected,actual);
     }
 
-    // TODO: Implement testGetTurnO once we write placeTurn method
+    @Test
+    public void testGetTurnO(){
+        char expected = 'o';
+
+        game.placeTurn(0, 0);
+        char actual = game.getTurn();
+
+        Assert.assertEquals(expected,actual);
+    }
 
     @Test
     public void testPlaceTurn() {
