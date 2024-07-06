@@ -104,6 +104,49 @@ public class TicTacToeTest {
     // TODO: Implement testGetTurnO once we write placeTurn method
 
     @Test
+    public void testPlaceTurn() {
+        char expectedCellVal = 'x';
+        char expectedTurnVal = 'o';
+
+        game.initGameBoard();
+        game.placeTurn(0, 0);
+
+        char[][] gameBoard = game.getGameBoard();
+        char actualCellVal = gameBoard[0][0];
+        char actualTurnVal = game.getTurn();
+
+        Assert.assertEquals(expectedCellVal, actualCellVal);
+        Assert.assertEquals(expectedTurnVal, actualTurnVal);
+    }
+
+    @Test
+    public void testPlaceTurnOccupied(){
+        char expectedCellVal = 'x';
+        char expectedTurnVal = 'o';
+
+        game.initGameBoard();
+
+        game.placeTurn(0, 0);
+
+        char[][] gameBoard = game.getGameBoard();
+        char actualCellVal = gameBoard[0][0];
+        char actualTurnVal = game.getTurn();
+
+        game.placeTurn(0, 0);
+
+        Assert.assertEquals(expectedCellVal, actualCellVal);
+        Assert.assertEquals(expectedTurnVal, actualTurnVal);
+
+        // Test that you can't place a move in an occupied cell
+        gameBoard = game.getGameBoard();
+        actualCellVal = gameBoard[0][0];
+        actualTurnVal = game.getTurn();
+
+        Assert.assertEquals(expectedCellVal, actualCellVal);
+        Assert.assertEquals(expectedTurnVal, actualTurnVal);
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }
