@@ -114,10 +114,12 @@ public class TicTacToeTest {
     public void testGetTurnO(){
         char expected = 'o';
 
+        game.initGameBoard();
         game.placeTurn(0, 0);
+
         char actual = game.getTurn();
 
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
