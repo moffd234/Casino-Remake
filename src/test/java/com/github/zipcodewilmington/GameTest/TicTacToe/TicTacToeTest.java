@@ -192,6 +192,20 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testPrintRow(){
+        String expected =" x | o | x \n";
+
+        game.initGameBoard();
+        game.placeTurn(0,0);
+        game.placeTurn(0,1);
+        game.placeTurn(0,2);
+
+        String actual = game.printRow(0);
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }

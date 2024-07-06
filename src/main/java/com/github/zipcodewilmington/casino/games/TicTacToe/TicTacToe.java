@@ -62,6 +62,18 @@ public class TicTacToe implements GameInterface {
         return false;
     }
 
+    public String printRow(int row) {
+    StringBuilder rowOutput = new StringBuilder();
+    for (int j = 0; j < COLS; j++) {
+        rowOutput.append(printCell(row, j));
+        if (j < COLS - 1) {
+            rowOutput.append("|");
+        }
+    }
+    rowOutput.append("\n");
+    return rowOutput.toString();
+}
+
     public String printCell(int row, int col){
         return " " + gameBoard[row][col] + " ";
     }
