@@ -47,6 +47,10 @@ public class TicTacToe implements GameInterface {
         }
     }
 
+    public boolean isCellOccupied(int row, int col){
+        return gameBoard[row][col] != ' ';
+    }
+
     public TicTacToePlayer getPlayer() {
         return player;
     }

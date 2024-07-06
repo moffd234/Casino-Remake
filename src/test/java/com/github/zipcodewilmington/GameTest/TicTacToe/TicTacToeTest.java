@@ -82,9 +82,14 @@ public class TicTacToeTest {
     }
 
     @Test
-    public void testGetWinner(){
+    public void testCellAlreadyOccupiedFalse(){
+        game.initGameBoard();
 
+        boolean actual = game.isCellOccupied(0, 0);
+
+        Assert.assertFalse(actual);
     }
+
 
     @Test
     public void testInheritance(){
