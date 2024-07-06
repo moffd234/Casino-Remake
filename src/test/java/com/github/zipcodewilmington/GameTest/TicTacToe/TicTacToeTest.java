@@ -206,6 +206,28 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testPrintGameBoard(){
+        String expected =
+                " x | o | x \n" +
+                "---+---+---\n" +
+                " o | x | o \n" +
+                "---+---+---\n" +
+                " x | o | x \n";
+
+        game.initGameBoard();
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                game.placeTurn(i, j);
+            }
+        }
+
+        String actual = game.printGameBoard();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }
