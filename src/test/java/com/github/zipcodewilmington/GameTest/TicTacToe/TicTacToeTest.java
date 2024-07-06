@@ -90,6 +90,18 @@ public class TicTacToeTest {
         Assert.assertFalse(actual);
     }
 
+    // TODO: Implement cellAlreadyOccupiedFalse once we write placeTurn method
+
+    @Test
+    public void testGetTurn(){
+        char expected = 'x';
+
+        char actual = game.getTurn();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    // TODO: Implement testGetTurnO once we write placeTurn method
 
     @Test
     public void testInheritance(){

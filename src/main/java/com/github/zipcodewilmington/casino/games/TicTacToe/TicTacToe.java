@@ -5,6 +5,8 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 
 public class TicTacToe implements GameInterface {
 
+
+    private char turn = 'x';
     private final int ROWS = 3;
     private final int COLS = 3;
     private TicTacToePlayer player;
@@ -49,6 +51,10 @@ public class TicTacToe implements GameInterface {
 
     public boolean isCellOccupied(int row, int col){
         return gameBoard[row][col] != ' ';
+    }
+
+    public char getTurn() {
+        return turn;
     }
 
     public TicTacToePlayer getPlayer() {
