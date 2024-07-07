@@ -10,7 +10,7 @@ public class TicTacToe implements GameInterface {
     private final int ROWS = 3;
     private final int COLS = 3;
     private TicTacToePlayer player;
-    private char[][] gameBoard = new char[ROWS][COLS];
+    private final char[][] gameBoard = new char[ROWS][COLS];
 
     @Override
     public void add(PlayerInterface player) {
@@ -91,6 +91,17 @@ public class TicTacToe implements GameInterface {
 
     public String printLineSeparator(){
         return "---+---+---\n";
+    }
+
+    public boolean isBoardFull(){
+        for(char[] row : gameBoard){
+            for(char cell : row){
+                if(cell == ' '){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public char getTurn() {
