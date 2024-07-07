@@ -220,7 +220,7 @@ public class TicTacToeTest {
     }
 
     @Test
-    public void testRowEmpty(){
+    public void testPrintRowEmpty(){
         String expected = "   |   |   \n";
 
         game.initGameBoard();
@@ -247,6 +247,22 @@ public class TicTacToeTest {
                 game.placeTurn(i, j);
             }
         }
+
+        String actual = game.printGameBoard();
+
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testPrintGameBoardEmpty(){
+        String expected =
+                "   |   |   \n" +
+                "---+---+---\n" +
+                "   |   |   \n" +
+                "---+---+---\n" +
+                "   |   |   \n";
+
+        game.initGameBoard();
 
         String actual = game.printGameBoard();
 
