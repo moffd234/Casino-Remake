@@ -359,9 +359,22 @@ public class TicTacToeTest {
             game.placeTurn(i, 0);
             game.placeTurn(i, 2);
         }
-        System.out.println(game.printGameBoard());
 
         boolean actual = game.checkWinner('x');
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testCheckWinnerVerticalO() {
+        game.initGameBoard();
+
+        // populate board for a vertical win for o
+        game.placeTurn(2,2); game.placeTurn(0,0);
+        game.placeTurn(1,1); game.placeTurn(1,0);
+        game.placeTurn(1,2); game.placeTurn(2,0);
+
+        System.out.println(game.printGameBoard());
+        boolean actual = game.checkWinner('o');
         Assert.assertTrue(actual);
     }
 
