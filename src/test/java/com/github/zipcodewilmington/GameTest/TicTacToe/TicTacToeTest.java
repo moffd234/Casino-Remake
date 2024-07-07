@@ -294,6 +294,21 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testCheckWinner(){
+        game.initGameBoard();
+
+        // populate board for a diagonal ( \ ) win for x
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(i, i);
+            game.placeTurn(2, i);
+        }
+
+        boolean actual = game.checkWinner('x');
+
+        Assert.assertTrue(actual);
+    }
+    
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }

@@ -104,6 +104,20 @@ public class TicTacToe implements GameInterface {
         return true;
     }
 
+    public boolean checkWinner(char player) {
+    // Check horizontal and vertical wins
+    for (int i = 0; i < 3; i++) {
+        if ((gameBoard[i][0] == player && gameBoard[i][1] == player && gameBoard[i][2] == player) ||
+            (gameBoard[0][i] == player && gameBoard[1][i] == player && gameBoard[2][i] == player)) {
+            return true;
+        }
+    }
+
+    // Check diagonal wins
+    return (gameBoard[0][0] == player && gameBoard[1][1] == player && gameBoard[2][2] == player) ||
+                (gameBoard[2][0] == player && gameBoard[1][1] == player && gameBoard[0][2] == player);
+    }
+
     public char getTurn() {
         return turn;
     }
