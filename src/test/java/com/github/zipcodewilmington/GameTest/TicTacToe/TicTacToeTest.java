@@ -285,6 +285,15 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testIsBoardFullFalse(){
+        game.initGameBoard();
+
+        boolean actual = game.isBoardFull();
+
+        Assert.assertFalse(actual);
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }
