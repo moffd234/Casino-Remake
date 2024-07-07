@@ -220,6 +220,18 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testRowEmpty(){
+        String expected = "   |   |   \n";
+
+        game.initGameBoard();
+
+        for(int i = 0; i < 3; i++){
+            String actual = game.printRow(i);
+            Assert.assertEquals(expected,actual);
+        }
+    }
+
+    @Test
     public void testPrintGameBoard(){
         String expected =
                 " x | o | x \n" +
