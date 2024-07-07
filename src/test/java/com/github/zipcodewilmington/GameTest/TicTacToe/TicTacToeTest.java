@@ -307,7 +307,7 @@ public class TicTacToeTest {
 
         Assert.assertTrue(actual);
     }
-    
+
     @Test
     public void testCheckWinnerRightDiagonalO(){
         game.initGameBoard();
@@ -321,6 +321,21 @@ public class TicTacToeTest {
         game.placeTurn(0,2); // o
 
         boolean actual = game.checkWinner('o');
+
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testCheckWinnerRightDiagonalX(){
+        game.initGameBoard();
+
+        // populate board for a diagonal ( / ) win for x
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(0, i);
+            game.placeTurn(2, i);
+        }
+
+        boolean actual = game.checkWinner('x');
 
         Assert.assertTrue(actual);
     }
