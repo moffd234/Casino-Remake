@@ -183,6 +183,20 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void printCellEmpty(){
+        String expected = "   ";
+
+        game.initGameBoard();
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                String actual = game.printCell(i, j);
+                Assert.assertEquals(expected, actual);
+            }
+        }
+    }
+
+    @Test
     public void testLineSeparator(){
         String expected = "---+---+---\n";
 
