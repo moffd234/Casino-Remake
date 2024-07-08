@@ -433,6 +433,87 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testXWinsLeftDiagonal(){
+        game.initGameBoard();
+
+        // populate board for a diagonal ( / ) win for x
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(0, i);
+            game.placeTurn(2, i);
+        }
+
+        boolean actual = game.xWins();
+
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testOWinsLeftDiagonal(){
+       game.initGameBoard();
+
+        // populate board for a diagonal ( / ) win for o
+        game.placeTurn(2,2); game.placeTurn(0,2);
+        game.placeTurn(1,0); game.placeTurn(1,1);
+        game.placeTurn(1,2); game.placeTurn(2,0);
+
+        boolean actual = game.oWins();
+
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testXWinsVertical() {
+        game.initGameBoard();
+
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(i, 0);
+            game.placeTurn(i, 2);
+        }
+
+        boolean actual = game.xWins();
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testOWinsVertical() {
+        game.initGameBoard();
+
+        // populate board for a vertical win for o
+        game.placeTurn(2,2); game.placeTurn(0,0);
+        game.placeTurn(1,1); game.placeTurn(1,0);
+        game.placeTurn(1,2); game.placeTurn(2,0);
+
+        boolean actual = game.oWins();
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testXWinsHorizontal(){
+        game.initGameBoard();
+
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(0, i);
+            game.placeTurn(2, i);
+        }
+
+        boolean actual = game.xWins();
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testOWinsHorizontal() {
+        game.initGameBoard();
+
+        // populate board for a horizontal win for o
+        game.placeTurn(2,2); game.placeTurn(0,0);
+        game.placeTurn(1,1); game.placeTurn(0,1);
+        game.placeTurn(1,2); game.placeTurn(0,2);
+
+        boolean actual = game.oWins();
+        Assert.assertTrue(actual);
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
     }
