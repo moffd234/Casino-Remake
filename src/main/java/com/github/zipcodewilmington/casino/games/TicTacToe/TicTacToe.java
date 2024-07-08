@@ -118,6 +118,14 @@ public class TicTacToe implements GameInterface {
                 (gameBoard[2][0] == player && gameBoard[1][1] == player && gameBoard[0][2] == player);
     }
 
+    public boolean xWins(){
+        return checkWinner('x');
+    }
+
+    public boolean oWins(){
+        return checkWinner('o');
+    }
+
     public char getTurn() {
         return turn;
     }

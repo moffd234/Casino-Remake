@@ -394,14 +394,41 @@ public class TicTacToeTest {
     public void testCheckWinnerHorizontalO() {
         game.initGameBoard();
 
-        // populate board for a vertical win for o
+        // populate board for a horizontal win for o
         game.placeTurn(2,2); game.placeTurn(0,0);
         game.placeTurn(1,1); game.placeTurn(0,1);
         game.placeTurn(1,2); game.placeTurn(0,2);
 
-        System.out.println(game.printGameBoard());
-
         boolean actual = game.checkWinner('o');
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testXWins() {
+        game.initGameBoard();
+
+        // populate board for a diagonal ( \ ) win for x
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(i, i);
+            game.placeTurn(2, i);
+        }
+
+        boolean actual = game.xWins();
+
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testOWins() {
+        game.initGameBoard();
+
+        // populate board for a diagonal ( \ ) win for o
+        game.placeTurn(2,0); game.placeTurn(0,0);
+        game.placeTurn(2,1); game.placeTurn(0,1);
+        game.placeTurn(1,1); game.placeTurn(0,2);
+
+        boolean actual = game.oWins();
+
         Assert.assertTrue(actual);
     }
 
