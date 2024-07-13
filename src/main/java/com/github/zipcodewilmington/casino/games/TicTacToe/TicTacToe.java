@@ -97,26 +97,27 @@ public class TicTacToe implements GameInterface {
         return true;
     }
 
-    public boolean checkWinner(char player) {
-    // Check horizontal and vertical wins
-    for (int i = 0; i < 3; i++) {
-        if ((gameBoard[i][0] == player && gameBoard[i][1] == player && gameBoard[i][2] == player) ||
-            (gameBoard[0][i] == player && gameBoard[1][i] == player && gameBoard[2][i] == player)) {
-            return true;
+    public char checkWinner() {
+
+        // Check horizontal and vertical wins
+        for (int i = 0; i < 3; i++) {
+            if (gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
+                return gameBoard[i][0];
+            }
+            if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' ') {
+                return gameBoard[0][i];
+            }
         }
-    }
 
-    // Check diagonal wins
-    return (gameBoard[0][0] == player && gameBoard[1][1] == player && gameBoard[2][2] == player) ||
-                (gameBoard[2][0] == player && gameBoard[1][1] == player && gameBoard[0][2] == player);
-    }
+        // Check diagonals
+        if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != ' ') {
+            return gameBoard[0][0];
+        }
+        if (gameBoard[2][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[0][2] && gameBoard[2][0] != ' ') {
+            return gameBoard[2][0];
+        }
 
-    public boolean xWins(){
-        return checkWinner('x');
-    }
-
-    public boolean oWins(){
-        return checkWinner('o');
+        return ' ';
     }
 
     public boolean isCellOccupied(int row, int col){
@@ -180,9 +181,8 @@ public class TicTacToe implements GameInterface {
             int[] cell = availableCells.get(random.nextInt(availableCells.size()));
             placeTurn(cell[0], cell[1]);
         }
-
     }
-    
+
     public char getTurn() {
         return turn;
     }
