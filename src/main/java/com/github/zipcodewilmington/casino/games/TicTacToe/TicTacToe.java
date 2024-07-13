@@ -51,19 +51,6 @@ public class TicTacToe implements GameInterface {
         }
     }
 
-    public boolean isCellOccupied(int row, int col){
-        return gameBoard[row][col] != ' ';
-    }
-
-    public boolean placeTurn(int row, int col){
-        if(!isCellOccupied(row, col)) {
-            gameBoard[row][col] = turn;
-            turn = (turn == 'x') ? 'o' : 'x';
-            return true;
-        }
-        return false;
-    }
-
     public String printGameBoard() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < ROWS; i++) {
@@ -128,6 +115,19 @@ public class TicTacToe implements GameInterface {
         return checkWinner('o');
     }
 
+    public boolean isCellOccupied(int row, int col){
+        return gameBoard[row][col] != ' ';
+    }
+
+    public boolean placeTurn(int row, int col){
+        if(!isCellOccupied(row, col)) {
+            gameBoard[row][col] = turn;
+            turn = (turn == 'x') ? 'o' : 'x';
+            return true;
+        }
+        return false;
+    }
+
     public int getRow(){
         int row = console.getIntegerInput("Enter a row between 0 - 2");
         while(row < 0 || row > 2){
@@ -142,6 +142,17 @@ public class TicTacToe implements GameInterface {
             column = console.getIntegerInput("Input out of bounds\nEnter a column between 0 - 2");
         }
         return column;
+    }
+
+    public void getUserInput(){
+        int row = getRow();
+        int col = getCol();
+
+        while(!placeTurn(row, col)){
+            System.out.println("Cell is already occupied. Move somewhere else");
+            row = getRow();
+            col = getCol();
+        }
     }
 
     public char getTurn() {
