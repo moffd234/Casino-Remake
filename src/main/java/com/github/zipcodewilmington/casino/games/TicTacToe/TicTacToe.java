@@ -136,6 +136,14 @@ public class TicTacToe implements GameInterface {
         return row;
     }
 
+    public int getCol(){
+        int column = console.getIntegerInput("Enter a column between 0 - 2");
+        while(column < 0 || column > 2){
+            column = console.getIntegerInput("Input out of bounds\nEnter a column between 0 - 2");
+        }
+        return column;
+    }
+
     public char getTurn() {
         return turn;
     }
