@@ -2,6 +2,7 @@ package com.github.zipcodewilmington.casino.games.TicTacToe;
 
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.utils.IOConsole;
 
 public class TicTacToe implements GameInterface {
 
@@ -10,6 +11,7 @@ public class TicTacToe implements GameInterface {
     private final int ROWS = 3;
     private final int COLS = 3;
     private TicTacToePlayer player;
+    private final IOConsole console = new IOConsole();
     private final char[][] gameBoard = new char[ROWS][COLS];
 
     @Override
@@ -124,6 +126,14 @@ public class TicTacToe implements GameInterface {
 
     public boolean oWins(){
         return checkWinner('o');
+    }
+
+    public int getRow(){
+        int row = console.getIntegerInput("Enter a row between 0 - 2");
+        while(row < 0 || row > 2){
+            row = console.getIntegerInput("Input out of bounds\nEnter a row between 0 - 2");
+        }
+        return row;
     }
 
     public char getTurn() {
