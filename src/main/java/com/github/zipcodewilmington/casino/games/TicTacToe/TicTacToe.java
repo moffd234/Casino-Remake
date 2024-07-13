@@ -68,12 +68,14 @@ public class TicTacToe implements GameInterface {
 
     public String printRow(int row) {
         StringBuilder rowOutput = new StringBuilder();
+
         for (int j = 0; j < COLS; j++) {
             rowOutput.append(printCell(row, j));
             if (j < COLS - 1) {
                 rowOutput.append("|");
             }
         }
+
         rowOutput.append("\n");
         return rowOutput.toString();
     }
@@ -125,27 +127,33 @@ public class TicTacToe implements GameInterface {
     }
 
     public boolean placeTurn(int row, int col){
+
         if(!isCellOccupied(row, col)) {
             gameBoard[row][col] = turn;
             turn = (turn == 'x') ? 'o' : 'x';
             return true;
         }
+
         return false;
     }
 
     public int getRow(){
         int row = console.getIntegerInput("Enter a row between 0 - 2");
+
         while(row < 0 || row > 2){
             row = console.getIntegerInput("Input out of bounds\nEnter a row between 0 - 2");
         }
+
         return row;
     }
 
     public int getCol(){
         int column = console.getIntegerInput("Enter a column between 0 - 2");
+
         while(column < 0 || column > 2){
             column = console.getIntegerInput("Input out of bounds\nEnter a column between 0 - 2");
         }
+
         return column;
     }
 
@@ -193,5 +201,21 @@ public class TicTacToe implements GameInterface {
 
     public char[][] getGameBoard() {
         return gameBoard;
+    }
+
+    public boolean simRound(){
+        getUserInput();
+        if (checkWinner() != ' ') {
+            System.out.println("Player Wins!");
+            return false;
+        }
+
+        getAIMove();
+        if (checkWinner() != ' ') {
+            System.out.println("AI Wins!");
+            return false;
+        }
+
+        return true;
     }
 }
