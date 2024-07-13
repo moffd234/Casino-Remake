@@ -3,6 +3,7 @@ package com.github.zipcodewilmington.casino.games.TicTacToe;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.utils.IOConsole;
+import java.util.Random;
 
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ public class TicTacToe implements GameInterface {
     private final int ROWS = 3;
     private final int COLS = 3;
     private TicTacToePlayer player;
+    private final Random random = new Random();
     private final IOConsole console = new IOConsole();
     private final char[][] gameBoard = new char[ROWS][COLS];
 
@@ -171,6 +173,16 @@ public class TicTacToe implements GameInterface {
         return availableCells;
     }
 
+    public void getAIMove(){
+        ArrayList<int[]> availableCells = getAvailableCells();
+
+        if(!availableCells.isEmpty()){
+            int[] cell = availableCells.get(random.nextInt(availableCells.size()));
+            placeTurn(cell[0], cell[1]);
+        }
+
+    }
+    
     public char getTurn() {
         return turn;
     }
