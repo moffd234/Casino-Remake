@@ -419,6 +419,55 @@ public class TicTacToeTest {
     }
 
     @Test
+    public void testCheckWinnerNoWinner() {
+        game.initGameBoard();
+
+        char expected = ' ';
+
+        game.placeTurn(0,0);
+        game.placeTurn(0,1);
+        game.placeTurn(0,2);
+
+        char actual = game.checkWinner();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testCheckWinnerFullNoWinner(){
+        game.initGameBoard();
+
+        char expected = ' ';
+
+        /*
+         Results in a stalemate with a full board
+         x o x
+         o o x
+         x x o
+         */
+
+        game.placeTurn(0,0); game.placeTurn(0,1);
+        game.placeTurn(0,2); game.placeTurn(1,0);
+        game.placeTurn(1,2); game.placeTurn(1,1);
+        game.placeTurn(2,0); game.placeTurn(2,2);
+        game.placeTurn(2,1);
+
+        char actual = game.checkWinner();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testCheckWinnerEmpty() {
+        game.initGameBoard();
+
+        char expected = ' ';
+
+        char actual = game.checkWinner();
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
     public void testGetAvailableCells(){
         game.initGameBoard();
         ArrayList<int[]> expected = new ArrayList<>();
