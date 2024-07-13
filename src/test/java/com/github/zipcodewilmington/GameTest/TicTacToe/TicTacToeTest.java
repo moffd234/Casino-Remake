@@ -531,16 +531,57 @@ public class TicTacToeTest {
 
         ArrayList<int[]> actual = game.getAvailableCells();
 
-        for (int[] expectedCell : expected) {
-            boolean found = false;
-            for (int[] actualCell : actual) {
-                if (Arrays.equals(expectedCell, actualCell)) {
-                    found = true;
-                    break;
-                }
-            }
-            Assert.assertTrue(found);
+        Assert.assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+    @Test
+    public void testGetAvailableCells1(){
+        game.initGameBoard();
+        ArrayList<int[]> expected = new ArrayList<>();
+        for(int i = 0; i < 3; i++){
+            expected.add(new int[]{i, 2});
         }
+
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(i, 0);
+            game.placeTurn(i, 1);
+        }
+
+        ArrayList<int[]> actual = game.getAvailableCells();
+
+        Assert.assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+    @Test
+    public void testGetAvailableCellsFullBoard() {
+        game.initGameBoard();
+        ArrayList<int[]> expected = new ArrayList<>();
+
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(i, 0);
+            game.placeTurn(i, 1);
+            game.placeTurn(i, 2);
+        }
+
+        ArrayList<int[]> actual = game.getAvailableCells();
+
+        Assert.assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+    @Test
+    public void testGetAvailableCellsEmptyBoard() {
+        game.initGameBoard();
+
+        ArrayList<int[]> expected = new ArrayList<>();
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(i, 0);
+            game.placeTurn(i, 1);
+            game.placeTurn(i, 2);
+        }
+
+        ArrayList<int[]> actual = game.getAvailableCells();
+
+        Assert.assertArrayEquals(expected.toArray(), actual.toArray());
     }
 
     @Test
