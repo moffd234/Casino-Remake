@@ -4,6 +4,8 @@ import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.util.ArrayList;
+
 public class TicTacToe implements GameInterface {
 
 
@@ -153,6 +155,20 @@ public class TicTacToe implements GameInterface {
             row = getRow();
             col = getCol();
         }
+    }
+
+    public ArrayList<int[]> getAvailableCells(){
+        ArrayList<int[]> availableCells = new ArrayList<>();
+
+        for(int i = 0; i < ROWS; i++){
+            for(int j = 0; j < COLS; j++){
+                if(gameBoard[i][j] == ' '){
+                    availableCells.add(new int[]{i, j});
+                }
+            }
+        }
+
+        return availableCells;
     }
 
     public char getTurn() {

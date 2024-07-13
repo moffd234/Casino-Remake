@@ -7,6 +7,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class TicTacToeTest {
     TicTacToe game;
 
@@ -511,6 +514,33 @@ public class TicTacToeTest {
 
         boolean actual = game.oWins();
         Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void testGetAvailableCells(){
+        game.initGameBoard();
+        ArrayList<int[]> expected = new ArrayList<>();
+        for(int i = 0; i < 3; i++){
+            expected.add(new int[]{i, 1});
+        }
+
+        for(int i = 0; i < 3; i++){
+            game.placeTurn(i, 0);
+            game.placeTurn(i, 2);
+        }
+
+        ArrayList<int[]> actual = game.getAvailableCells();
+
+        for (int[] expectedCell : expected) {
+            boolean found = false;
+            for (int[] actualCell : actual) {
+                if (Arrays.equals(expectedCell, actualCell)) {
+                    found = true;
+                    break;
+                }
+            }
+            Assert.assertTrue(found);
+        }
     }
 
     @Test
