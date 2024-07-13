@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class TicTacToeTest {
     TicTacToe game;
@@ -573,10 +572,11 @@ public class TicTacToeTest {
         game.initGameBoard();
 
         ArrayList<int[]> expected = new ArrayList<>();
+
         for(int i = 0; i < 3; i++){
-            game.placeTurn(i, 0);
-            game.placeTurn(i, 1);
-            game.placeTurn(i, 2);
+            expected.add(new int[]{i, 0});
+            expected.add(new int[]{i, 1});
+            expected.add(new int[]{i, 2});
         }
 
         ArrayList<int[]> actual = game.getAvailableCells();
