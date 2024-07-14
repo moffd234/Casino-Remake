@@ -32,7 +32,14 @@ public class TicTacToe implements GameInterface {
 
     @Override
     public void run() {
+        System.out.println(printWelcomeMessage());
 
+        while(getContinueInput().equals("yes")) {
+            turn = 'x';
+            initGameBoard();
+            simGame();
+            System.out.println(printGameBoard());
+        }
     }
 
     @Override
