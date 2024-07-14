@@ -204,7 +204,6 @@ public class TicTacToe implements GameInterface {
     }
 
     public boolean simRound(){
-        System.out.println(printGameBoard());
         if(!simUserRound()){
             return false;
         }
@@ -229,11 +228,16 @@ public class TicTacToe implements GameInterface {
         return true;
     }
 
-    public boolean simGame(){
+    public void simGame(){
         boolean gameOn = true;
-        while(gameOn && !isBoardFull()) {
+        while(gameOn) {
+            System.out.println(printGameBoard());
             gameOn = simRound();
+            if(isBoardFull() && gameOn){
+                printGameBoard();
+                System.out.println("Game Over! Stale Mate");
+                gameOn = false;
+            }
         }
-        return false;
     }
 }

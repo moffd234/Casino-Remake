@@ -9,6 +9,7 @@ public class MainApplication {
         TicTacToe game = new TicTacToe();
         game.add(new TicTacToePlayer());
         game.initGameBoard();
-        game.simGame();
+        game.run();
+//        new Casino().run();
     }
 }
