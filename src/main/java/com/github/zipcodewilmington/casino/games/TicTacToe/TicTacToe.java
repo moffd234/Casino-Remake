@@ -204,18 +204,28 @@ public class TicTacToe implements GameInterface {
     }
 
     public boolean simRound(){
+
+        if(!simUserRound()){
+            return false;
+        }
+        return simAIRound();
+    }
+
+    public boolean simUserRound(){
         getUserInput();
         if (checkWinner() != ' ') {
             System.out.println("Player Wins!");
             return false;
         }
+        return true;
+    }
 
+    public boolean simAIRound(){
         getAIMove();
         if (checkWinner() != ' ') {
             System.out.println("AI Wins!");
             return false;
         }
-
         return true;
     }
 }
