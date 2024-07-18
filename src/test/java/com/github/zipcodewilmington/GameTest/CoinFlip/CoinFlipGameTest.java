@@ -66,10 +66,53 @@ public class CoinFlipGameTest {
         CasinoAccount expectedAccount = expectedPlayer.getArcadeAccount();
 
         game.add(expectedPlayer);
-        
+
         CasinoAccount actualAccount = game.getAccount();
 
         Assert.assertEquals(expectedAccount, actualAccount);
+    }
+
+    @Test
+    public void testRemoveSuccessful(){
+        CasinoAccount account = new CasinoAccount("tester", "tester");
+        CoinFlipPlayer player = new CoinFlipPlayer(account);
+
+        game.add(player);
+
+        CoinFlipPlayer actualPlayer = game.getPlayer();
+        CasinoAccount actualAccount = actualPlayer.getArcadeAccount();
+
+        Assert.assertEquals(player, actualPlayer);
+        Assert.assertEquals(account, actualAccount);
+
+        game.remove(player);
+        actualPlayer = game.getPlayer();
+        actualAccount = game.getAccount();
+
+        Assert.assertNull(actualPlayer);
+        Assert.assertNull(actualAccount);
+    }
+
+    @Test
+    public void testRemoveFailed(){
+        CasinoAccount account = new CasinoAccount("tester", "tester");
+        CoinFlipPlayer player = new CoinFlipPlayer(account);
+
+        game.add(player);
+
+        CoinFlipPlayer actualPlayer = game.getPlayer();
+        CasinoAccount actualAccount = game.getAccount();
+
+        Assert.assertEquals(player, actualPlayer);
+        Assert.assertEquals(account, actualAccount);
+
+        game.remove(new CoinFlipPlayer(new CasinoAccount("tester", "tester")));
+
+        actualPlayer = game.getPlayer();
+        actualAccount = game.getAccount();
+
+        Assert.assertEquals(player, actualPlayer);
+        Assert.assertEquals(account, actualAccount);
     }
 
     @Test

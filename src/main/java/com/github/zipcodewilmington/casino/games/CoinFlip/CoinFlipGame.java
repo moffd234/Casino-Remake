@@ -18,6 +18,11 @@ public class CoinFlipGame implements GamblingGameInterface {
     @Override
     public void remove(PlayerInterface player) {
 
+        if(this.player == player) {
+            this.player = null;
+            this.account = null;
+        }
+
     }
 
     @Override
