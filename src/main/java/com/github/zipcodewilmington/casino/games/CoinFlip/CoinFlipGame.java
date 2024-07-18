@@ -40,6 +40,10 @@ public class CoinFlipGame implements GamblingGameInterface {
                 "|__/     \\__/|________/|________/ \\______/  \\______/ |__/     |__/|________/         |__/   \\______/        \\______/  \\______/ |______/|__/  \\__/|__/      |________/|______/|__/";
     }
 
+    public int getHeadsTails(){
+        return (int)(Math.random() * 2);
+    }
+
     public CasinoAccount getAccount() {
         return account;
     }
