@@ -25,6 +25,7 @@ public class CoinFlipPlayerTest {
         Assert.assertEquals(expected, actual);
     }
 
+
     @Test
     public void testInheritance(){
         CoinFlipPlayer player = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));

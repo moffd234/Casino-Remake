@@ -19,6 +19,12 @@ public class CoinFlipGameTest {
     }
 
     @Test
+    public void testConstructor(){
+        Assert.assertNull(game.getPlayer());
+        Assert.assertNull(game.getAccount());
+    }
+
+    @Test
     public void testGetPlayer(){
         CoinFlipPlayer player = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
 
@@ -49,6 +55,22 @@ public class CoinFlipGameTest {
         Assert.assertEquals(expectedPlayer, actualPlayer);
     }
 
+    @Test
+    public void testGetAccountNull() {
+        Assert.assertNull(game.getAccount());
+    }
+
+    @Test
+    public void testGetAccount(){
+        CoinFlipPlayer expectedPlayer = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
+        CasinoAccount expectedAccount = expectedPlayer.getArcadeAccount();
+
+        game.add(expectedPlayer);
+        
+        CasinoAccount actualAccount = game.getAccount();
+
+        Assert.assertEquals(expectedAccount, actualAccount);
+    }
 
     @Test
     public void testInheritance(){
