@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.GameTest.CoinFlip;
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GamblingGameInterface;
 import com.github.zipcodewilmington.casino.GameInterface;
 import com.github.zipcodewilmington.casino.games.CoinFlip.CoinFlipGame;
@@ -19,7 +20,7 @@ public class CoinFlipGameTest {
 
     @Test
     public void testGetPlayer(){
-        CoinFlipPlayer player = new CoinFlipPlayer();
+        CoinFlipPlayer player = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
 
         game.add(player);
 
@@ -40,7 +41,7 @@ public class CoinFlipGameTest {
         CoinFlipPlayer actualPlayer = game.getPlayer();
         Assert.assertNull(actualPlayer);
 
-        CoinFlipPlayer expectedPlayer = new CoinFlipPlayer();
+        CoinFlipPlayer expectedPlayer = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
 
         game.add(expectedPlayer);
         actualPlayer = game.getPlayer();

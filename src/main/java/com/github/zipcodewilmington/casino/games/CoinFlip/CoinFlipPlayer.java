@@ -4,6 +4,14 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GamblingPlayerInterface;
 
 public class CoinFlipPlayer implements GamblingPlayerInterface {
+
+    CasinoAccount arcadeAccount;
+
+    public CoinFlipPlayer(CasinoAccount arcadeAccount) {
+        this.arcadeAccount = arcadeAccount;
+    }
+
+
     @Override
     public int wager() {
         return 0;
@@ -16,7 +24,7 @@ public class CoinFlipPlayer implements GamblingPlayerInterface {
 
     @Override
     public CasinoAccount getArcadeAccount() {
-        return null;
+        return arcadeAccount;
     }
 
     @Override
