@@ -4,9 +4,12 @@ import com.github.zipcodewilmington.casino.GamblingGameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
 
 public class CoinFlipGame implements GamblingGameInterface {
+
+    CoinFlipPlayer player;
+
     @Override
     public void add(PlayerInterface player) {
-
+        this.player = (CoinFlipPlayer) player;
     }
 
     @Override
@@ -22,5 +25,9 @@ public class CoinFlipGame implements GamblingGameInterface {
     @Override
     public String printWelcomeMessage() {
         return "";
+    }
+
+    public CoinFlipPlayer getPlayer() {
+        return player;
     }
 }
