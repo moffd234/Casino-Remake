@@ -26,7 +26,17 @@ public class CoinFlipGame implements GamblingGameInterface {
 
     @Override
     public void run() {
+        System.out.println(printWelcomeMessage());
 
+        while(getContinueInput().equals("yes")){
+            double wager = getWagerAmount(account);
+            account.subtractLosses(wager);
+
+            String guess= getHeadsTailsInput();
+            String outcome = handleHeadsTails();
+
+            System.out.println(handleOutcome(wager, guess, outcome));
+        }
     }
 
     @Override
@@ -66,7 +76,7 @@ public class CoinFlipGame implements GamblingGameInterface {
         return input;
     }
 
-    public String handleOutcome(int wager, String guess, String flipOutcome){
+    public String handleOutcome(double wager, String guess, String flipOutcome){
         if(guess.equals(flipOutcome)){
             account.addWinnings(wager * 2);
             return "YOU WIN! The answer was " + flipOutcome;
