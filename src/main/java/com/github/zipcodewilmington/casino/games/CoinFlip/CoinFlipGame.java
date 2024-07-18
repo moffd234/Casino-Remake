@@ -56,14 +56,22 @@ public class CoinFlipGame implements GamblingGameInterface {
     public String getHeadsTailsInput(){
         IOConsole console = new IOConsole();
 
-        String input = console.getStringInput("Enter Guess: Heads or Tails");
+        String input = console.getStringInput("Enter Guess: Heads or Tails").toLowerCase();
 
-        while(!input.equalsIgnoreCase("tails") && !input.equalsIgnoreCase("heads")){
+        while(!input.equals("tails") && !input.equals("heads")){
             input = console.getStringInput("Incorrect Input. Please Enter Heads or Tails" +
                                                   "\nEnter Guess: Heads or Tails");
         }
 
         return input;
+    }
+
+    public String handleOutcome(int wager, String guess, String flipOutcome){
+        if(guess.equals(flipOutcome)){
+            account.addWinnings(wager * 2);
+            return "YOU WIN! The answer was " + flipOutcome;
+        }
+        return "You Lose. The answer was " + flipOutcome;
     }
 
     public CasinoAccount getAccount() {

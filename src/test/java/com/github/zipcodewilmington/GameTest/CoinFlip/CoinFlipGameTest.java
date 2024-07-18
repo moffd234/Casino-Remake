@@ -140,6 +140,33 @@ public class CoinFlipGameTest {
     }
 
     @Test
+    public void testHandleOutcomeWinTails(){
+        CoinFlipPlayer player = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
+        game.add(player);
+
+        String expectedString = "YOU WIN! The answer was tails";
+        double expectedAccountBalance = player.getArcadeAccount().getBalance() + 20;
+
+        String actualString = game.handleOutcome(10, "tails", "tails");
+        double actualAccountBalance = player.getArcadeAccount().getBalance();
+
+        Assert.assertEquals(expectedString, actualString);
+        Assert.assertEquals(expectedAccountBalance, actualAccountBalance,0.001);
+    }
+
+    @Test
+    public void testHandleOutcomeLoseTails(){
+        CoinFlipPlayer player = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
+        game.add(player);
+
+        String expectedString = "You Lose. The answer was tails";
+
+        String actualString = game.handleOutcome(10, "heads", "tails");
+
+        Assert.assertEquals(expectedString, actualString);
+    }
+
+    @Test
     public void testInheritance(){
         Assert.assertTrue(game instanceof GameInterface);
         Assert.assertTrue(game instanceof GamblingGameInterface);
