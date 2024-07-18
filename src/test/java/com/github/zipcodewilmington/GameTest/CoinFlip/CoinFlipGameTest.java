@@ -132,9 +132,9 @@ public class CoinFlipGameTest {
     }
 
     @Test
-    public void testGetHeadsTails(){
+    public void testGetRandomNum(){
         for(int i = 0; i < 100; i++){
-            int num = game.getHeadsTails();
+            int num = game.getRandomNum();
             Assert.assertTrue(-.01 < num && num < 1.01);
         }
     }
