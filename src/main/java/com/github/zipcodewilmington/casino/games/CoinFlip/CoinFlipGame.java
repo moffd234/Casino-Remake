@@ -3,6 +3,7 @@ package com.github.zipcodewilmington.casino.games.CoinFlip;
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.GamblingGameInterface;
 import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.utils.IOConsole;
 
 public class CoinFlipGame implements GamblingGameInterface {
 
@@ -50,6 +51,19 @@ public class CoinFlipGame implements GamblingGameInterface {
             return "tails";
         }
         return "heads";
+    }
+
+    public String getHeadsTailsInput(){
+        IOConsole console = new IOConsole();
+
+        String input = console.getStringInput("Enter Guess: Heads or Tails");
+
+        while(!input.equalsIgnoreCase("tails") && !input.equalsIgnoreCase("heads")){
+            input = console.getStringInput("Incorrect Input. Please Enter Heads or Tails" +
+                                                  "\nEnter Guess: Heads or Tails");
+        }
+
+        return input;
     }
 
     public CasinoAccount getAccount() {
