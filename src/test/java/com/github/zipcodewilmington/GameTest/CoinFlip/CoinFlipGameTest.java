@@ -163,6 +163,42 @@ public class CoinFlipGameTest {
 
         String actualString = game.handleOutcome(10, "heads", "tails");
 
+        player.getArcadeAccount().subtractLosses(10); // This would usually be done in the game.run() method
+                                                            // I am putting it here to ensure the test account's balance
+                                                            // Doesn't get too high
+
+        Assert.assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void testHandleOutcomeWinHeads() {
+        CoinFlipPlayer player = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
+
+        game.add(player);
+
+        String expectedString = "YOU WIN! The answer was heads";
+        double expectedAccountBalance = player.getArcadeAccount().getBalance() + 20;
+
+        String actualString = game.handleOutcome(10, "heads", "heads");
+        double actualAccountBalance = player.getArcadeAccount().getBalance();
+
+        Assert.assertEquals(expectedString, actualString);
+        Assert.assertEquals(expectedAccountBalance, actualAccountBalance,0.001);
+    }
+
+    @Test
+    public void testHandleOutcomeLoseHeads(){
+        CoinFlipPlayer player = new CoinFlipPlayer(new CasinoAccount("tester", "tester"));
+        game.add(player);
+
+        String expectedString = "You Lose. The answer was heads";
+
+        String actualString = game.handleOutcome(10, "tails", "heads");
+
+        player.getArcadeAccount().subtractLosses(10); // This would usually be done in the game.run() method
+                                                            // I am putting it here to ensure the test account's balance
+                                                            // Doesn't get too high
+
         Assert.assertEquals(expectedString, actualString);
     }
 
